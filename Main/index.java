@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class index {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner sc = new Scanner(System.in);
+        //SeachDelete sd = new SeachDelete();
 
         clear(); // Limpar a tela
         System.out.println("--------------------------------------");
@@ -33,7 +34,7 @@ public class index {
             switch (opcao) {
                 case 1: // Logistica
                     int opcao_log = 0;
-                    int contador = 0; // Para saber se � a primeira vez que o usu�rio entra no menu
+                    //int contador = 0; // Para saber se é a primeira vez que o usuário entra no menu
 
                     clear(); // Limpar a tela
 
@@ -68,8 +69,7 @@ public class index {
                                 int cod_fornecedor = sc.nextInt();
                                 forn = new Fornecedores(nome, cnpj, endereco, telefone, cod_fornecedor);
                                 list_forn.add(forn);
-                                cad_Fornecedor = true; // Não ta funcionando, diz que Não há fornecedores criados (Consertado)
-                                                       // ERROR
+                                cad_Fornecedor = true;
 
                                 // Adicionar agora o poder exluir fornecedor ou add mais
 
@@ -78,7 +78,7 @@ public class index {
                                 System.out.println("CNPJ: " + forn.getCnpj()); // Debug
                                 System.out.println("Telefone: " + forn.getTelefone()); // Debug
                                 System.out.println("código do fornecedor: " + forn.getCod_fornecedor()); // Debug
-                                System.out.println("Cadastro fornecedor: " + cad_Fornecedor);
+                                System.out.println("Cadastro fornecedor: " + cad_Fornecedor); //Degub
                                 System.out.println(" "); // Degub
                                 break;
 
@@ -89,7 +89,7 @@ public class index {
                                     System.out.println("--> Excluindo o fornecedor");
                                     System.out.println("1 - CNPJ");
                                     System.out.println("2 - código do fornecedor");
-                                    System.out.print("Escolha dentre as alternativas para selecionar o m�todo de exclus�o: ");
+                                    System.out.print("Escolha dentre as alternativas para selecionar o método de exclusão: ");
                                     int excluir_opc = sc.nextInt();
 
                                     switch (excluir_opc) { //tá dando erro ERROR
@@ -106,23 +106,34 @@ public class index {
                                                 System.out.print("Tem certeza? 1 - Sim, 2 - Não: ");
                                                 int certeza = sc.nextInt();
                                                 if (certeza == 1) {
-                                                	apagarCnpj(esc_CNPJ, list_forn);
+                                                	SeachDelete.apagarCnpj(esc_CNPJ, list_forn, cad_Fornecedor);
+
 												} else {
 													System.out.println("-----> Ação cancelada");
 													break;
 												}
-                                                
-                                                
-                                                
-                                                
                                             }
                                             break; // bom dia Douglas tenta apertar ctrl a + delete alt f4
                 
                                         case 2: //código do fornecedor
-                                            for (int i = 0; i < 10; i++) { // Mudar isso ak
-                                                System.out.println("");// Aq vai mostrar o codigo para excluir o
-                                                                       // fornecedor
+                                        for (int i = 0; i < list_forn.size(); i++) { 
+                                            System.out.println("\nDigite um dos códigos dos fornecedores para apagar: ");
+                                            System.out.println(list_forn.get(i).getCod_fornecedor());// Aq vai mostrar os cpf para excluir o fornecedor
+                                            System.out.print("\nDigite sua escolha:");
+                                            int esc_Fornecedor = sc.nextInt();
+                                            
+                                            //int posicao = buscarCnpj(esc_CNPJ, list_forn);
+                                            
+                                            System.out.print("Tem certeza? 1 - Sim, 2 - Não: ");
+                                            int certeza = sc.nextInt();
+                                            if (certeza == 1) {
+                                                SeachDelete.apagarCodigoFornecedor(esc_Fornecedor, list_forn, cad_Fornecedor);
+
+                                            } else {
+                                                System.out.println("-----> Ação cancelada");
+                                                break;
                                             }
+                                        }
                                             break;
                                         default:
                                             break;
@@ -182,28 +193,7 @@ public class index {
             Runtime.getRuntime().exec("clear");
     }
     
-    public static int buscarCnpj(int cnpj ,ArrayList<Fornecedores> list_forn) {
-    	for (int i = 0; i < list_forn.size(); i++) {
-			if (list_forn.get(i).getCnpj() == cnpj) {
-				System.out.println("Posição do CNPJ para excluir: " + i);
-				return i;
-			}
-		}
-    	return -1;
-    }
     
-    public static void apagarCnpj(int cnpj, ArrayList<Fornecedores> list_forn) {
-    	int posicao = buscarCnpj(cnpj, list_forn);
-    	System.out.println("Posição do CNPJ: " + posicao);
-    	
-    	if (posicao != -1) {
-			list_forn.remove(posicao);
-			System.out.println("\n-----> Fornecedor com o CNPJ " + posicao + " foi apagado com sucesso."); //ALERT
-		}else {
-			System.out.println("\n-----> CNPJ Não encontrado\n"); //ALERT
-		}
-    
-    }
 }
 
 /*
