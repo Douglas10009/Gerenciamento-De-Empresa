@@ -1,13 +1,13 @@
 import java.util.ArrayList;
 
 public class Fornecedores  {
-    //nome, endereço, cnpj, telefone, código do fornecedor
+    //nome, endereï¿½o, cnpj, telefone, cï¿½digo do fornecedor
 
     
-    private String nome = ""; //Provável vai ter q mudar pq public é "falha" de segurança
+    private String nome = ""; //Provï¿½vel vai ter q mudar pq public ï¿½ "falha" de seguranï¿½a
     private String endereco = "";
     private int cnpj = 0;
-    private int telefone = 0;
+    private String telefone = "";
     private int cod_fornecedor = 0;
 
     public String getNome() {
@@ -34,11 +34,11 @@ public class Fornecedores  {
         this.cnpj = cnpj;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 
@@ -50,9 +50,10 @@ public class Fornecedores  {
         this.cod_fornecedor = cod_fornecedor;
     }
 
-    public Fornecedores (String nome, int cnpj, String endereco, int telefone, int cod_fornecedor){
+    public Fornecedores (String nome, int cnpj, String endereco, String telefone, int cod_fornecedor){
         this.nome = nome;
         this.cnpj = cnpj;
+        this.endereco = endereco;
         this.telefone = telefone;
         this.cod_fornecedor = cod_fornecedor;
     }

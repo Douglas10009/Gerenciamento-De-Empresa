@@ -20,7 +20,7 @@ public class index {
         while (opcao != 6) {
 
             System.out.println("\n-- Menu Principal --");
-            System.out.println("Escolha uma opção -");
+            System.out.println("Escolha uma opção: ");
             System.out.println("1- Sistema de logistica");
             System.out.println("2 - Sistema de controle");
             System.out.println("3 - Sistema de atualização de dados");
@@ -48,13 +48,14 @@ public class index {
                     System.out.println("1- Gerenciamento fornecedores");
                     System.out.println("2- Gerenciamento clientes");
                     System.out.println("3- Gerenciamento produtos");
+                    System.out.println("4 - Voltar");
                     System.out.print("Digite sua opção: ");
                     int opc_gerenciamento = sc.nextInt();
 
                     clear(); // Limpar a tela
 
                     switch (opc_gerenciamento) {
-                        case 1://Gerenciar Fornecedor
+                        case 1://Gerenciar Fornecedor 
 
                             Fornecedores forn = new Fornecedores();
                             boolean cad_Fornecedor = false;
@@ -68,21 +69,36 @@ public class index {
                                 System.out.print("Digite o número da sua opção: ");
                                 opcao_log_fornecedores = sc.nextInt();
 
+                                sc.nextLine(); //Tirar enter do buffer
+
                                 switch (opcao_log_fornecedores) {
                                     case 1:
                                         clear(); // Limpar tela
                                         System.out.println("\n-- Sistema de logistica --");
                                         System.out.println("--> Cadastrando o fornecedor");
-
                                         System.out.print("Digite o nome do fornecedor: ");
-                                        String nome = sc.next();
-                                        // sc.next(); //Para tirar espaço vazio do buffer
+                                        String nome = sc.nextLine();
+
+                                        System.out.println(nome); //degub
+
+
                                         System.out.print("Digite o endereço do fornecedor: ");
-                                        String endereco = sc.next();
+                                        String endereco = sc.nextLine();
+
+                                        System.out.println(endereco); //Debug
+
+
                                         System.out.print("Digite o CNPJ do fornecedor: ");
                                         int cnpj = sc.nextInt();
+
+                                        sc.nextLine(); //Debug
+
                                         System.out.print("Digite o telefone do fornecedor: ");
-                                        int telefone = sc.nextInt();
+                                        String telefone = sc.nextLine();
+
+                                        //System.out.println(telefone);//Degub
+
+
                                         System.out.print("Digite o código do fornecedor: ");
                                         int cod_fornecedor = sc.nextInt();
                                         forn = new Fornecedores(nome, cnpj, endereco, telefone, cod_fornecedor);
@@ -91,7 +107,7 @@ public class index {
 
                                         // Adicionar agora o poder exluir fornecedor ou add mais
 
-                                        System.out.println("\nO nome: " + forn.getNome()); // Debug
+                                        System.out.println("\nnome: " + forn.getNome()); // Debug
                                         System.out.println("endereço: " + forn.getEndereco()); // Debug
                                         System.out.println("CNPJ: " + forn.getCnpj()); // Debug
                                         System.out.println("Telefone: " + forn.getTelefone()); // Debug
@@ -101,7 +117,7 @@ public class index {
                                         break;
 
                                     case 2:
-                                        System.out.println(cad_Fornecedor); // debug
+                                        System.out.println(cad_Fornecedor); // Debug
                                         if (cad_Fornecedor == true) {
                                             System.out.println("\n-- Sistema de logistica --");
                                             System.out.println("--> Excluindo o fornecedor");
