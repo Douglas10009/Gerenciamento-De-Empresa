@@ -33,14 +33,23 @@ public class index {
 
             switch (opcao) {
                 case 1: // Logistica
-                    int opcao_log = 0;
+                    int opcao_log_fornecedores = 0;
+                    int opcao_log_cliente = 0;
+                    int opcao_log_produto = 0;
                     //int contador = 0; // Para saber se é a primeira vez que o usuário entra no menu
+
+                    // Cadastrar novos fornecedores
+                    // Cadastrar Clientes
+                    // Cadastrar Produtos
+
+                    
+
 
                     clear(); // Limpar a tela
 
                     Fornecedores forn = new Fornecedores(); 
                     boolean cad_Fornecedor = false;
-                    while (opcao_log != 3) {
+                    while (opcao_log_fornecedores != 3) {
                         System.out.println("-- Sistema de logistica --");
                         System.out.println("> Fornecedores ");
                         System.out.println("Escolha uma opção -");
@@ -48,9 +57,9 @@ public class index {
                         System.out.println("2 - Excluir fornecedores");
                         System.out.println("3 - Voltar");
                         System.out.print("Digite o número da sua opção: ");
-                        opcao_log = sc.nextInt();
+                        opcao_log_fornecedores = sc.nextInt();
 
-                        switch (opcao_log) {
+                        switch (opcao_log_fornecedores) {
                             case 1:
                                 clear(); // Limpar tela
                                 System.out.println("\n-- Sistema de logistica --");
@@ -151,9 +160,7 @@ public class index {
                     }
                     // clearScreen(); //Função de limpar a tela
 
-                    // Cadastrar novos fornecedores
-                    // Cadastrar Clientes
-                    // Cadastrar Produtos
+                    
                     break;
                 case 2:// Controle
 
