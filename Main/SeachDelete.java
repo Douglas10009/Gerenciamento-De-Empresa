@@ -17,7 +17,7 @@ public class SeachDelete {
     	
     	if (posicao != -1) {
 			list_forn.remove(posicao);
-			System.out.println("\n-----> Fornecedor com o CNPJ " + cnpj + " foi apagado com sucesso."); //ALERT
+			System.out.println("\n-----> Fornecedor com o CNPJ " + cnpj + " foi apagado com sucesso. \n"); //ALERT
             if (list_forn.size() < 1) {
                 cad_Fornecedor = false;
             } 
@@ -44,7 +44,7 @@ public class SeachDelete {
     	
     	if (posicao != -1) {
 			list_forn.remove(posicao);
-			System.out.println("\n-----> Fornecedor com o código " + cod_fornecedor + " foi apagado com sucesso."); //ALERT
+			System.out.println("\n-----> Fornecedor com o código " + cod_fornecedor + " foi apagado com sucesso. \n"); //ALERT
             if (list_forn.size() < 1) {
                 cad_Fornecedor = false;
             } 

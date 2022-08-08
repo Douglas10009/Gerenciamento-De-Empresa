@@ -22,11 +22,11 @@ public class index {
             System.out.println("\n-- Menu Principal --");
             System.out.println("Escolha uma opção: ");
             System.out.println("1- Sistema de logistica");
-            System.out.println("2 - Sistema de controle");
-            System.out.println("3 - Sistema de atualização de dados");
-            System.out.println("4 - Sistema de transação - Compra e Venda");
-            System.out.println("5 - Relatório");
-            System.out.println("6 - Sair");
+            System.out.println("2 - Sistema de controle (BREVE)");
+            System.out.println("3 - Sistema de atualização de dados (BREVE)");
+            System.out.println("4 - Sistema de transação - Compra e Venda (BREVE)");
+            System.out.println("5 - Relatório (BREVE)");
+            System.out.println("6 - Sair ");
 
             System.out.print("Digite o número da sua opção: ");
             opcao = sc.nextInt();
@@ -55,7 +55,7 @@ public class index {
                     clear(); // Limpar a tela
 
                     switch (opc_gerenciamento) {
-                        case 1://Gerenciar Fornecedor 
+                        case 1:// Gerenciar Fornecedor
 
                             Fornecedores forn = new Fornecedores();
                             boolean cad_Fornecedor = false;
@@ -69,7 +69,7 @@ public class index {
                                 System.out.print("Digite o número da sua opção: ");
                                 opcao_log_fornecedores = sc.nextInt();
 
-                                sc.nextLine(); //Tirar enter do buffer
+                                sc.nextLine(); // Tirar enter do buffer
 
                                 switch (opcao_log_fornecedores) {
                                     case 1:
@@ -79,25 +79,22 @@ public class index {
                                         System.out.print("Digite o nome do fornecedor: ");
                                         String nome = sc.nextLine();
 
-                                        System.out.println(nome); //degub
-
+                                        System.out.println(nome); // degub
 
                                         System.out.print("Digite o endereço do fornecedor: ");
                                         String endereco = sc.nextLine();
 
-                                        System.out.println(endereco); //Debug
+                                        System.out.println(endereco); // Debug
 
-
-                                        System.out.print("Digite o CNPJ do fornecedor: ");
+                                        System.out.print("Digite o CNPJ do fornecedor:  ");
                                         int cnpj = sc.nextInt();
 
-                                        sc.nextLine(); //Debug
+                                        sc.nextLine(); // Debug
 
                                         System.out.print("Digite o telefone do fornecedor: ");
                                         String telefone = sc.nextLine();
 
-                                        //System.out.println(telefone);//Degub
-
+                                        // System.out.println(telefone);//Degub
 
                                         System.out.print("Digite o código do fornecedor: ");
                                         int cod_fornecedor = sc.nextInt();
@@ -129,33 +126,40 @@ public class index {
 
                                             switch (excluir_opc) { // tá dando erro ERROR
                                                 case 1:// CNPJ
+                                                    System.out.println(list_forn.size()); // Debug
+
+                                                    System.out.println(list_forn.size()); // Debug
+                                                    System.out.println("\nDigite um dos CNPJ para apagar: ");
+
                                                     for (int i = 0; i < list_forn.size(); i++) {
-                                                        System.out.println("\nDigite um dos CNPJ para apagar: ");
                                                         System.out.println(list_forn.get(i).getCnpj());// Aq vai mostrar
-                                                                                                       // os cpf para
-                                                                                                       // excluir o
+                                                        // os cpf para
+                                                        // excluir o
                                                         // fornecedor
-                                                        System.out.print("\nDigite sua escolha:");
-                                                        int esc_CNPJ = sc.nextInt();
-
-                                                        // int posicao = buscarCnpj(esc_CNPJ, list_forn);
-
-                                                        System.out.print("Tem certeza? 1 - Sim, 2 - Não: ");
-                                                        int certeza = sc.nextInt();
-                                                        if (certeza == 1) {
-                                                            SeachDelete.apagarCnpj(esc_CNPJ, list_forn, cad_Fornecedor);
-
-                                                        } else {
-                                                            System.out.println("-----> Ação cancelada");
-                                                            break;
-                                                        }
                                                     }
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    int esc_CNPJ = sc.nextInt();
+
+                                                    // int posicao = buscarCnpj(esc_CNPJ, list_forn);
+
+                                                    System.out.print("Tem certeza? 1 - Sim, 2 - Não: ");
+                                                    int certeza = sc.nextInt();
+                                                    if (certeza == 1) {
+                                                        SeachDelete.apagarCnpj(esc_CNPJ, list_forn, cad_Fornecedor);
+
+                                                    } else {
+                                                        System.out.println("\n-----> Ação cancelada\n");
+                                                        break;
+                                                    }
+
                                                     break; // bom dia Douglas tenta apertar ctrl a + delete alt f4
 
                                                 case 2: // código do fornecedor
+                                                    // for (int i = 0; i < list_forn.size(); i++) {
+                                                    System.out.println(
+                                                            "\nDigite um dos códigos dos fornecedores para apagar: ");
+
                                                     for (int i = 0; i < list_forn.size(); i++) {
-                                                        System.out.println(
-                                                                "\nDigite um dos códigos dos fornecedores para apagar: ");
                                                         System.out.println(list_forn.get(i).getCod_fornecedor());// Aq
                                                                                                                  // vai
                                                                                                                  // mostrar
@@ -165,22 +169,23 @@ public class index {
                                                                                                                  // excluir
                                                                                                                  // o
                                                                                                                  // fornecedor
-                                                        System.out.print("\nDigite sua escolha:");
-                                                        int esc_Fornecedor = sc.nextInt();
-
-                                                        // int posicao = buscarCnpj(esc_CNPJ, list_forn);
-
-                                                        System.out.print("Tem certeza? 1 - Sim, 2 - Não: ");
-                                                        int certeza = sc.nextInt();
-                                                        if (certeza == 1) {
-                                                            SeachDelete.apagarCodigoFornecedor(esc_Fornecedor,
-                                                                    list_forn, cad_Fornecedor);
-
-                                                        } else {
-                                                            System.out.println("-----> Ação cancelada");
-                                                            break;
-                                                        }
                                                     }
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    int esc_Fornecedor = sc.nextInt();
+
+                                                    // int posicao = buscarCnpj(esc_CNPJ, list_forn);
+
+                                                    System.out.print("Tem certeza? 1 - Sim, 2 - Não: ");
+                                                    int certeza2 = sc.nextInt();
+                                                    if (certeza2 == 1) {
+                                                        SeachDelete.apagarCodigoFornecedor(esc_Fornecedor,
+                                                                list_forn, cad_Fornecedor);
+
+                                                    } else {
+                                                        System.out.println("\n-----> Ação cancelada\n");
+                                                        break;
+                                                    }
+                                                    // }
                                                     break;
                                                 default:
                                                     break;
@@ -198,11 +203,11 @@ public class index {
 
                             }
                             break;
-                        
-                        case 2: //Gerenciar Cliente
+
+                        case 2: // Gerenciar Cliente
                             break;
-                        
-                        case 3: //Gerenciar Produto
+
+                        case 3: // Gerenciar Produto
                             break;
                         default:
                             break;
