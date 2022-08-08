@@ -168,13 +168,13 @@ public class index {
 
     }
 
-    public static void clearScreen() { // M�todo para limpar a tela
+    public static void clearScreen() { // Método para limpar a tela
         char esc = 27;
         String clear = esc + "[2J"; // codigo ansi para limpar a tela
         System.out.print(clear);
     }
 
-    public static void clear() throws IOException, InterruptedException { // M�todo 2 para limpar a tela
+    public static void clear() throws IOException, InterruptedException { // Método 2 para limpar a tela
         // Limpa a tela no windows, no linux e no MacOS
         if (System.getProperty("os.name").contains("Windows"))
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -185,7 +185,7 @@ public class index {
     public static int buscarCnpj(int cnpj ,ArrayList<Fornecedores> list_forn) {
     	for (int i = 0; i < list_forn.size(); i++) {
 			if (list_forn.get(i).getCnpj() == cnpj) {
-				System.out.println("Posi��o do CNPJ para excluir: " + i);
+				System.out.println("Posição do CNPJ para excluir: " + i);
 				return i;
 			}
 		}
@@ -194,7 +194,7 @@ public class index {
     
     public static void apagarCnpj(int cnpj, ArrayList<Fornecedores> list_forn) {
     	int posicao = buscarCnpj(cnpj, list_forn);
-    	System.out.println("Posi��o do CNPJ: " + posicao);
+    	System.out.println("Posição do CNPJ: " + posicao);
     	
     	if (posicao != -1) {
 			list_forn.remove(posicao);
