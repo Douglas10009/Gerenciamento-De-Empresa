@@ -1,12 +1,10 @@
 import java.util.ArrayList;
 
 public class Fornecedores  {
-    //nome, endere�o, cnpj, telefone, c�digo do fornecedor
 
-    
-    private String nome = ""; //Prov�vel vai ter q mudar pq public � "falha" de seguran�a
+    private String nome = ""; 
     private String endereco = "";
-    private int cnpj = 0;
+    private String cnpj = "";
     private String telefone = "";
     private int cod_fornecedor = 0;
 
@@ -26,11 +24,11 @@ public class Fornecedores  {
         this.endereco = endereco;
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
@@ -50,7 +48,7 @@ public class Fornecedores  {
         this.cod_fornecedor = cod_fornecedor;
     }
 
-    public Fornecedores (String nome, int cnpj, String endereco, String telefone, int cod_fornecedor){
+    public Fornecedores (String nome, String cnpj, String endereco, String telefone, int cod_fornecedor){
         this.nome = nome;
         this.cnpj = cnpj;
         this.endereco = endereco;

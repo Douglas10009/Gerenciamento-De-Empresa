@@ -13,6 +13,7 @@ public class index {
         System.out.println("--------------------------------------");
         System.out.println("\n----> Seja bem vindo a Logistica e CIA :)"); // belo trabalho
         int opcao = 0;
+        String nome = "";
         ArrayList<Fornecedores> list_forn = new ArrayList<Fornecedores>();
 
 
@@ -96,12 +97,12 @@ public class index {
                                         System.out.println("\n-- Sistema de logistica --");
                                         System.out.println("--> Cadastrando o fornecedor");
                                         System.out.print("Digite o nome do fornecedor: ");
-                                        String nome = sc.nextLine();
+                                        nome = sc.nextLine();
                                         System.out.print("Digite o endereço do fornecedor: ");
                                         String endereco = sc.nextLine();
                                         System.out.print("Digite o CNPJ do fornecedor:  ");
-                                        int cnpj = sc.nextInt();
-                                        sc.nextLine(); // Tirar enter do Buffer
+                                        String cnpj = sc.nextLine();
+                                        // sc.nextLine(); // Tirar enter do Buffer
                                         System.out.print("Digite o telefone do fornecedor: ");
                                         String telefone = sc.nextLine();
                                         System.out.print("Digite o código do fornecedor: ");
@@ -110,14 +111,14 @@ public class index {
 
                                         forn = new Fornecedores(nome, cnpj, endereco, telefone, cod_fornecedor);
                                         list_forn.add(forn);
-                                        cad_Fornecedor = true;
+                                        cad_Fornecedor = true; // Variável para definir que criou ao menos um fornecedor
 
-
+                                        System.out.println("\n-----> O fornecedor, " + nome + " foi criado! \n"); //ALERT
                                         break;
 
 
                                     case 2: //Excluir Fornecedor
-                                        System.out.println(cad_Fornecedor); // Debug
+                                    System.out.println(cad_Fornecedor);
                                         if (cad_Fornecedor == true) {
                                             System.out.println("\n \n-- Sistema de logistica --");
                                             System.out.println("--> Excluindo o fornecedor");
@@ -127,6 +128,8 @@ public class index {
                                                     "Escolha dentre as alternativas para selecionar o método de exclusão: ");
                                             int excluir_opc = sc.nextInt();
 
+                                            sc.nextLine(); //Tirar enter do buffer
+
 
 
                                             switch (excluir_opc) { 
@@ -135,12 +138,12 @@ public class index {
 
 
                                                     for (int i = 0; i < list_forn.size(); i++) {
-                                                        System.out.println(list_forn.get(i).getCnpj());// Aq vai mostrar os cpf para excluir o fornecedor
+                                                        System.out.println(list_forn.get(i).getCnpj());// Aqui vai mostrar os cpf para excluir o fornecedor
                                                     }
 
 
                                                     System.out.print("\nDigite sua escolha:");
-                                                    int esc_CNPJ = sc.nextInt();
+                                                    String esc_CNPJ = sc.nextLine();
                                                     System.out.print("Tem certeza? [1 - Sim, 2 - Não]: ");
                                                     int certeza = sc.nextInt();
 
@@ -149,12 +152,14 @@ public class index {
                                                         SeachDelete.apagarCnpj(esc_CNPJ, list_forn, cad_Fornecedor);
 
                                                     } else {
+
+                                                        clear(); //Limpar tela
+                                                        
                                                         System.out.println("\n-----> Ação cancelada\n");
                                                         break;
                                                         
                                                     }
-                                                    break; // bom dia Douglas tenta apertar ctrl a + delete alt f4
-
+                                                    break; 
 
 
                                                 case 2: // código do fornecedor
