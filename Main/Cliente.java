@@ -1,54 +1,63 @@
 
  public class Cliente {
       
-    // nome, endereço, cpf ou cnpj, telefone, código do cliente) 
+    // nome, endereço, cpf ou cnpj, telefone, código do cliente
 
-    private String nome;
-    private String endereco;
-    private int cpf;
-    private int telefone;
-    private int codigo_Cliente;
-
-    public Cliente ( String n, String end, int cpf, int tele, int codcliente){
-       this.setCpf(cpf);
-       this.setCodigo_Cliente(codcliente);
-       this.setEndereco(end);
-       this.setNome(n);
-
-    }
+    private String nome = ""; 
+    private String endereco = "";
+    private String cnpj = "";
+    private String telefone = "";
+    private int cod_cliente = 0;
 
     public String getNome() {
         return nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public String getEndereco() {
         return endereco;
     }
+
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
-    public int getCpf() {
-        return cpf;
+
+    public String getCnpj() {
+        return cnpj;
     }
-    public void setCpf(int cpf) {
-        this.cpf = cpf;
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
-    public int getTelefone() {
+
+    public String getTelefone() {
         return telefone;
     }
-    public void setTelefone(int telefone) {
-        this.telefone = telefone;
 
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
-    
-    public int getCodigo_Cliente() {
-        return codigo_Cliente;
+
+    public int getCod_cliente() {
+        return cod_cliente;
     }
-    public void setCodigo_Cliente(int codigo_Cliente) {
-        this.codigo_Cliente = codigo_Cliente;
+
+    public void setCod_cliente(int cod_cliente) {
+        this.cod_cliente = cod_cliente;
     }
+
+    public Cliente (String nome, String cnpj, String endereco, String telefone, int cod_cliente){
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.cod_cliente = cod_cliente;
+    }
+
+    public Cliente(){}
 
    
 }

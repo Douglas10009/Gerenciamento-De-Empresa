@@ -6,19 +6,23 @@ public class index {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner sc = new Scanner(System.in);
 
+        //sandbox de variáveis
+        int opcao = 0;
+        String nome_cliente = "";
+        ArrayList<Fornecedores> list_forn = new ArrayList<Fornecedores>();
+        ArrayList<Cliente> list_cliente = new ArrayList<Cliente>();
+        //Fim 
 
+        
         clear(); // Limpar a tela
-
 
         System.out.println("--------------------------------------");
         System.out.println("\n----> Seja bem vindo a Logistica e CIA :)"); // belo trabalho
-        int opcao = 0;
-        String nome = "";
-        ArrayList<Fornecedores> list_forn = new ArrayList<Fornecedores>();
-
-
+        
 
         while (opcao != 6) {
+
+            clear();
 
             System.out.println("\n-- Menu Principal --");
             System.out.println("Escolha uma opção: ");
@@ -31,21 +35,13 @@ public class index {
             System.out.print("Digite o número da sua opção: ");
             opcao = sc.nextInt();
 
-
-
             switch (opcao) {
                 case 1: // Logistica
-                    int opcao_log_fornecedores = 0;
-                    int opcao_log_cliente = 0;
-                    int opcao_log_produto = 0;
-
-                    // Cadastrar novos fornecedores
-                    // Cadastrar Clientes
-                    // Cadastrar Produtos
-
+                    int opcao_log_fornecedores = 0; //Navegação do menu principal dos fornecedores
+                    int opcao_log_cliente = 0; //Navegação do menu principal dos clientes
+                    int opcao_log_produto = 0; //Navegação do menu principal dos produtos
 
                     clear(); // Limpar tela
-
 
                     System.out.println("-- Sistema de logistica --");
                     System.out.println(">  Gerenciamento ");
@@ -56,22 +52,15 @@ public class index {
                     System.out.print("Digite sua opção: ");
                     int opc_gerenciamento = sc.nextInt();
 
-
                     clear(); // Limpar a tela
-
-
 
                     switch (opc_gerenciamento) {
                         case 1:// Gerenciar Fornecedor
 
-
-
                             Fornecedores forn = new Fornecedores();
                             boolean cad_Fornecedor = false;
 
-
                             while (opcao_log_fornecedores != 3) {
-
 
                                 System.out.println("-- Sistema de logistica --");
                                 System.out.println("-> Fornecedores ");
@@ -83,21 +72,16 @@ public class index {
                                 opcao_log_fornecedores = sc.nextInt();
                                 sc.nextLine(); // Tirar enter do buffer
 
-
-
                                 switch (opcao_log_fornecedores) {
 
-
-                                    case 1://Cadastrar fornecedor
-
+                                    case 1:// Cadastrar fornecedor
 
                                         clear(); // Limpar tela
-
 
                                         System.out.println("\n-- Sistema de logistica --");
                                         System.out.println("--> Cadastrando o fornecedor");
                                         System.out.print("Digite o nome do fornecedor: ");
-                                        nome = sc.nextLine();
+                                        nome_cliente = sc.nextLine();
                                         System.out.print("Digite o endereço do fornecedor: ");
                                         String endereco = sc.nextLine();
                                         System.out.print("Digite o CNPJ do fornecedor:  ");
@@ -108,17 +92,15 @@ public class index {
                                         System.out.print("Digite o código do fornecedor: ");
                                         int cod_fornecedor = sc.nextInt();
 
-
-                                        forn = new Fornecedores(nome, cnpj, endereco, telefone, cod_fornecedor);
+                                        forn = new Fornecedores(nome_cliente, cnpj, endereco, telefone, cod_fornecedor);
                                         list_forn.add(forn);
                                         cad_Fornecedor = true; // Variável para definir que criou ao menos um fornecedor
 
-                                        System.out.println("\n-----> O fornecedor, " + nome + " foi criado! \n"); //ALERT
+                                        System.out.println("\n-----> O fornecedor, " + nome_cliente + " foi criado! \n"); // ALERT
                                         break;
 
-
-                                    case 2: //Excluir Fornecedor
-                                    System.out.println(cad_Fornecedor);
+                                    case 2: // Excluir Fornecedor
+                                        System.out.println(cad_Fornecedor);
                                         if (cad_Fornecedor == true) {
                                             System.out.println("\n \n-- Sistema de logistica --");
                                             System.out.println("--> Excluindo o fornecedor");
@@ -128,39 +110,36 @@ public class index {
                                                     "Escolha dentre as alternativas para selecionar o método de exclusão: ");
                                             int excluir_opc = sc.nextInt();
 
-                                            sc.nextLine(); //Tirar enter do buffer
+                                            sc.nextLine(); // Tirar enter do buffer
 
-
-
-                                            switch (excluir_opc) { 
+                                            switch (excluir_opc) {
                                                 case 1:// CNPJ
                                                     System.out.println("\nDigite um dos CNPJ para apagar: ");
 
-
                                                     for (int i = 0; i < list_forn.size(); i++) {
-                                                        System.out.println(list_forn.get(i).getCnpj());// Aqui vai mostrar os cpf para excluir o fornecedor
+                                                        System.out.println(list_forn.get(i).getCnpj());// Aqui vai
+                                                                                                       // mostrar os cpf
+                                                                                                       // para excluir o
+                                                                                                       // fornecedor
                                                     }
-
 
                                                     System.out.print("\nDigite sua escolha:");
                                                     String esc_CNPJ = sc.nextLine();
                                                     System.out.print("Tem certeza? [1 - Sim, 2 - Não]: ");
                                                     int certeza = sc.nextInt();
 
-
                                                     if (certeza == 1) {
                                                         SeachDelete.apagarCnpj(esc_CNPJ, list_forn, cad_Fornecedor);
 
                                                     } else {
 
-                                                        clear(); //Limpar tela
-                                                        
+                                                        clear(); // Limpar tela
+
                                                         System.out.println("\n-----> Ação cancelada\n");
                                                         break;
-                                                        
-                                                    }
-                                                    break; 
 
+                                                    }
+                                                    break;
 
                                                 case 2: // código do fornecedor
                                                     System.out.println(
@@ -180,7 +159,6 @@ public class index {
                                                     System.out.print("\nDigite sua escolha:");
                                                     int esc_Fornecedor = sc.nextInt();
 
-
                                                     System.out.print("Tem certeza? 1 - Sim, 2 - Não: ");
                                                     int certeza2 = sc.nextInt();
 
@@ -194,11 +172,9 @@ public class index {
                                                     }
                                                     break;
 
-
                                                 default:
                                                     break;
                                             }
-
 
                                         } else {
                                             System.out.println(
@@ -206,8 +182,6 @@ public class index {
                                         }
                                         break;
 
-
-                                    
                                     default:
                                         break;
                                 }
@@ -215,15 +189,143 @@ public class index {
                             }
                             break;
 
+                        case 2:// Gerenciar cliente
 
-                        case 2: // Gerenciar Cliente
+                            Cliente cliente = new Cliente(); //Construtor do cliente
+                            boolean cad_Cliente = false; //Verificar se o cliente está cadastrado
 
+                            while (opcao_log_cliente != 3) {
+
+                                System.out.println("-- Sistema de logistica --");
+                                System.out.println("-> Cliente ");
+                                System.out.println("Escolha uma opção -");
+                                System.out.println("1 - Cadastrar cliente");
+                                System.out.println("2 - Excluir cliente");
+                                System.out.println("3 - Voltar");
+                                System.out.print("Digite o número da sua opção: ");
+                                opcao_log_cliente = sc.nextInt();
+                                sc.nextLine(); // Tirar enter do buffer
+
+                                switch (opcao_log_cliente) {
+
+                                    case 1:// Cadastrar cliente
+
+                                        clear(); // Limpar tela
+
+                                        System.out.println("\n-- Sistema de logistica --");
+                                        System.out.println("--> Cadastrando o cliente");
+                                        System.out.print("Digite o nome do cliente: ");
+                                        nome_cliente = sc.nextLine();
+                                        System.out.print("Digite o endereço do cliente: ");
+                                        String endereco_cliente = sc.nextLine();
+                                        System.out.print("Digite o CNPJ/CPF do cliente:  ");
+                                        String cnpj_cpf_cliente = sc.nextLine();
+                                        // sc.nextLine(); // Tirar enter do Buffer
+                                        System.out.print("Digite o telefone do cliente: ");
+                                        String telefone = sc.nextLine();
+                                        System.out.print("Digite o código do cliente: ");
+                                        int cod_cliente = sc.nextInt();
+
+                                        cliente = new Cliente(nome_cliente, cnpj_cpf_cliente, endereco_cliente, telefone, cod_cliente);
+                                        list_cliente.add(cliente);
+                                        cad_Cliente = true; // Variável para definir que criou ao menos um cliente
+
+                                        System.out.println("\n-----> O cliente, " + nome_cliente + " foi criado! \n"); // ALERT
+                                        break;
+
+                                    case 2: // Excluir cliente
+                                        System.out.println(cad_Cliente);
+                                        if (cad_Cliente == true) {
+                                            System.out.println("\n \n-- Sistema de logistica --");
+                                            System.out.println("--> Excluindo o cliente");
+                                            System.out.println("1 - CNPJ");
+                                            System.out.println("2 - código do cliente");
+                                            System.out.print(
+                                                    "Escolha dentre as alternativas para selecionar o método de exclusão: ");
+                                            int excluir_opc = sc.nextInt();
+
+                                            sc.nextLine(); // Tirar enter do buffer
+
+                                            switch (excluir_opc) {
+                                                case 1:// CNPJ
+                                                    System.out.println("\nDigite um dos CNPJ/CPF para apagar: ");
+
+                                                    for (int i = 0; i < list_forn.size(); i++) {
+                                                        System.out.println(list_forn.get(i).getCnpj());// Aqui vai
+                                                                                                       // mostrar os cpf
+                                                                                                       // para excluir o
+                                                                                                       // cliente
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    String esc_CNPJ_CPF = sc.nextLine();
+                                                    System.out.print("Tem certeza? [1 - Sim, 2 - Não]: ");
+                                                    int certeza = sc.nextInt();
+
+                                                    if (certeza == 1) {
+                                                        SeachDelete.apagarCnpj_Cpf(esc_CNPJ_CPF, list_cliente, cad_Cliente);
+
+                                                    } else {
+
+                                                        clear(); // Limpar tela
+
+                                                        System.out.println("\n-----> Ação cancelada\n");
+                                                        break;
+
+                                                    }
+                                                    break;
+
+                                                case 2: // código do cliente
+                                                    System.out.println(
+                                                            "\nDigite um dos códigos dos Cliente para apagar: ");
+
+                                                    for (int i = 0; i < list_cliente.size(); i++) {
+                                                        System.out.println(list_cliente.get(i).getCod_cliente());// Aq
+                                                                                                              // vai
+                                                                                                              // mostrar
+                                                                                                              // os
+                                                                                                              // cpf
+                                                                                                              // para
+                                                                                                              // excluir
+                                                                                                              // o
+                                                                                                              // cliente
+                                                    }
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    int esc_cliente = sc.nextInt();
+
+                                                    System.out.print("Tem certeza? 1 - Sim, 2 - Não: ");
+                                                    int certeza2 = sc.nextInt();
+
+                                                    if (certeza2 == 1) {
+                                                        SeachDelete.apagarCodigoCliente(esc_cliente,
+                                                                list_cliente, cad_Cliente);
+
+                                                    } else {
+                                                        System.out.println("\n-----> Ação cancelada\n");
+                                                        break;
+                                                    }
+                                                    break;
+
+                                                default:
+                                                    break;
+                                            }
+
+                                        } else {
+                                            System.out.println(
+                                                    "\n----------> Não há Cliente cadastrados, cadastre um cliente\n"); // ALERT
+                                        }
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+
+                            }
                             break;
 
                         case 3: // Gerenciar Produto
 
                             break;
-
 
                         default:
 
@@ -233,31 +335,25 @@ public class index {
 
                     break;
 
-
-                case 2://Sistema de Controle
-
-                    break;
-
-
-                case 3: //Sistema de atualização de dados
+                case 2:// Sistema de Controle
 
                     break;
 
+                case 3: // Sistema de atualização de dados
+
+                    break;
 
                 case 4: // Sistema de transação
 
                     break;
 
-
                 case 5: // Relatório
 
                     break;
 
-
                 case 6: // Saída
 
                     break;
-
 
                 default:
                     System.out.println("opção inválida, tente novamente. ");
@@ -268,15 +364,11 @@ public class index {
 
     }
 
-
-
     public static void clearScreen() { // Método para limpar a tela
         char esc = 27;
         String clear = esc + "[2J"; // codigo ansi para limpar a tela
         System.out.print(clear);
     }
-
-
 
     public static void clear() throws IOException, InterruptedException { // Método 2 para limpar a tela
         // Limpa a tela no windows, no linux e no MacOS
