@@ -6,11 +6,15 @@ public class index {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner sc = new Scanner(System.in);
 
+
         //sandbox de variáveis
         int opcao = 0;
+        String nome_fornecedor = "";
         String nome_cliente = "";
+        String nome_produto = "";
         ArrayList<Fornecedores> list_forn = new ArrayList<Fornecedores>();
         ArrayList<Cliente> list_cliente = new ArrayList<Cliente>();
+        ArrayList<Produto> list_produto = new ArrayList<Produto>();
         //Fim 
 
         
@@ -22,7 +26,7 @@ public class index {
 
         while (opcao != 6) {
 
-            clear();
+            //clear();
 
             System.out.println("\n-- Menu Principal --");
             System.out.println("Escolha uma opção: ");
@@ -81,7 +85,7 @@ public class index {
                                         System.out.println("\n-- Sistema de logistica --");
                                         System.out.println("--> Cadastrando o fornecedor");
                                         System.out.print("Digite o nome do fornecedor: ");
-                                        nome_cliente = sc.nextLine();
+                                        nome_fornecedor = sc.nextLine();
                                         System.out.print("Digite o endereço do fornecedor: ");
                                         String endereco = sc.nextLine();
                                         System.out.print("Digite o CNPJ do fornecedor:  ");
@@ -234,7 +238,7 @@ public class index {
                                         break;
 
                                     case 2: // Excluir cliente
-                                        System.out.println(cad_Cliente);
+                                        System.out.println(cad_Cliente);//Debug
                                         if (cad_Cliente == true) {
                                             System.out.println("\n \n-- Sistema de logistica --");
                                             System.out.println("--> Excluindo o cliente");
@@ -323,40 +327,183 @@ public class index {
                             }
                             break;
 
-                        case 3: // Gerenciar Produto
+                            case 3:// Gerenciar Produto
 
+                            Produto Produto = new Produto(); //Construtor do produto
+                            boolean cad_Produto = false; //Verificar se o produto está cadastrado
+
+                            while (opcao_log_produto != 3) {
+
+                                System.out.println("-- Sistema de logistica --");
+                                System.out.println("-> Produto ");
+                                System.out.println("Escolha uma opção -");
+                                System.out.println("1 - Cadastrar produto");
+                                System.out.println("2 - Excluir produto");
+                                System.out.println("3 - Voltar");
+                                System.out.print("Digite o número da sua opção: ");
+                                opcao_log_produto = sc.nextInt();
+                                sc.nextLine(); // Tirar enter do buffer
+
+                                switch (opcao_log_produto) {
+
+                                    case 1:// Cadastrar Produto
+
+                                        clear(); // Limpar tela
+
+                                        System.out.println("\n-- Sistema de logistica --");
+                                        System.out.println("--> Cadastrando o Produto");
+                                        System.out.print("Digite o nome do Produto (Descrisão): ");
+                                        nome_produto = sc.nextLine();
+                                        System.out.print("Digite o código do Produto: ");
+                                        int cod_Produto = sc.nextInt();
+
+                                        Produto = new Produto(nome_produto, cod_Produto);
+                                        list_produto.add(Produto);
+                                        cad_Produto = true; // Variável para definir que criou ao menos um Produto
+
+                                        System.out.println("\n-----> O Produto, " + nome_produto + " foi criado! \n"); // ALERT
+                                        break;
+
+                                    case 2: // Excluir Produto
+                                        System.out.println(cad_Produto);//Debug
+                                        if (cad_Produto == true) {
+                                            System.out.println("\n \n-- Sistema de logistica --");
+                                            System.out.println("--> Excluindo o Produto");
+                                            System.out.println("1 - nome");
+                                            System.out.println("2 - código do Produto");
+                                            System.out.print(
+                                                    "Escolha dentre as alternativas para selecionar o método de exclusão: ");
+                                            int excluir_opc = sc.nextInt();
+
+                                            sc.nextLine(); // Tirar enter do buffer
+
+                                            switch (excluir_opc) {
+                                                case 1:// nome
+                                                    System.out.println("\nDigite um dos nome para apagar: ");
+
+                                                    for (int i = 0; i < list_produto.size(); i++) {
+                                                        System.out.println(list_produto.get(i).getNome());// Aqui vai
+                                                                                                       // mostrar os cpf
+                                                                                                       // para excluir o
+                                                                                                       // Produto
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    String esc_nome = sc.nextLine();
+                                                    System.out.print("Tem certeza? [1 - Sim, 2 - Não]: ");
+                                                    int certeza = sc.nextInt();
+
+                                                    if (certeza == 1) {
+                                                        SeachDelete.apagarNome(esc_nome,list_produto, cad_Produto);
+
+                                                    } else {
+
+                                                        clear(); // Limpar tela
+
+                                                        System.out.println("\n-----> Ação cancelada\n");
+                                                        break;
+
+                                                    }
+                                                    break;
+
+                                                case 2: // código do Produto
+                                                    System.out.println(
+                                                            "\nDigite um dos códigos dos produto para apagar: ");
+
+                                                    for (int i = 0; i < list_produto.size(); i++) {
+                                                        System.out.println(list_produto.get(i).getCodigo());// Aq
+                                                                                                              // vai
+                                                                                                              // mostrar
+                                                                                                              // os
+                                                                                                              // cpf
+                                                                                                              // para
+                                                                                                              // excluir
+                                                                                                              // o
+                                                                                                              // Produto
+                                                    }
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    int esc_Produto = sc.nextInt();
+
+                                                    System.out.print("Tem certeza? 1 - Sim, 2 - Não: ");
+                                                    int certeza2 = sc.nextInt();
+
+                                                    if (certeza2 == 1) {
+                                                        SeachDelete.apagarCodigoProduto(esc_Produto,
+                                                                list_produto, cad_Produto);
+
+                                                    } else {
+                                                        System.out.println("\n-----> Ação cancelada\n");
+                                                        break;
+                                                    }
+                                                    break;
+
+                                                default:
+                                                    break;
+                                            }
+
+                                        } else {
+                                            System.out.println(
+                                                    "\n----------> Não há Produto cadastrados, cadastre um Produto\n"); // ALERT
+                                        }
+                                        break;
+
+                                    default:
+                                        break;
+                                }
+                            }
                             break;
-
                         default:
-
                             break;
                     }
-                    // clearScreen(); //Função de limpar a tela
-
                     break;
 
+                
+                
+                
+                
                 case 2:// Sistema de Controle
 
                     break;
 
+                
+                
+                
+                
+                
+                
                 case 3: // Sistema de atualização de dados
 
                     break;
 
+                
+                
+                
+                
+                
                 case 4: // Sistema de transação
 
                     break;
 
+                
+                
+                
+                
+                
                 case 5: // Relatório
 
                     break;
 
+                
+                
+                
+                
+                
                 case 6: // Saída
 
                     break;
 
                 default:
-                    System.out.println("opção inválida, tente novamente. ");
+                    System.out.println("-----> opção inválida, tente novamente. "); //ALERT
                     break;
             }
         }

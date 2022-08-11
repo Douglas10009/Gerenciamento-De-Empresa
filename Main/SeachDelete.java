@@ -72,6 +72,8 @@ public class SeachDelete {
 
 
 
+
+
 	//Cliente
 	public static int buscarCnpj_Cpf(String cnpj_cpf, ArrayList<Cliente> list_cliente) {
 		for (int i = 0; i < list_cliente.size(); i++) {
@@ -82,7 +84,7 @@ public class SeachDelete {
 		return -1;
 	}
 
-	public static void apagarCnpj_Cpf(String cnpj_cpf, ArrayList<Cliente> list_cliente, boolean cod_Cliente) {
+	public static void apagarCnpj_Cpf(String cnpj_cpf, ArrayList<Cliente> list_cliente, boolean cad_Cliente) {
 		int posicao = buscarCnpj_Cpf(cnpj_cpf, list_cliente);
 
 		if (posicao != -1) {
@@ -90,7 +92,7 @@ public class SeachDelete {
 			list_cliente.remove(posicao);
 
 			if (list_cliente.size() < 1) {
-				cod_Cliente = false;
+				cad_Cliente = false;
 			}			
 		} else {
 			System.out.println("\n-----> CNPJ/CPF Não encontrado\n"); // ALERT
@@ -122,6 +124,64 @@ public class SeachDelete {
 		} else {
 			System.out.println("\n-----> Código do cliente não encontrado\n"); // ALERT
 		}
+
+	}
+
+
+
+
+
+	//Produtos
+	public static int buscarNome(String nome, ArrayList<Produto> list_produto) {
+		for (int i = 0; i < list_produto.size(); i++) {
+			if (list_produto.get(i).getNome().equals(nome)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public static void apagarNome(String nome, ArrayList<Produto> list_produto, boolean cad_Produto) {
+		int posicao = buscarNome(nome, list_produto);
+
+		if (posicao != -1) {
+			System.out.println("\n-----> O Produto " + nome + " foi apagado com sucesso. \n"); // ALERT
+			list_produto.remove(posicao);
+
+			if (list_produto.size() < 1) {
+				cad_Produto = false;
+			}			
+		} else {
+			System.out.println("\n-----> Nome não encontrado\n"); // ALERT
+		}
+
+	}
+
+	public static int buscarCodigoProduto(int cod_produto, ArrayList<Produto> list_produto) {
+		for (int i = 0; i < list_produto.size(); i++) {
+			if (list_produto.get(i).getCodigo() == cod_produto) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public static void apagarCodigoProduto(int cod_produto, ArrayList<Produto> list_produto,
+			boolean cad_Produto) {
+		int posicao = buscarCodigoProduto(cod_produto, list_produto);
+
+		if (posicao != -1) {
+			System.out.println("\n-----> O produto," + list_produto.get(posicao).getNome() + ", com o código " + cod_produto + " foi apagado com sucesso. \n"); // ALERT
+			list_produto.remove(posicao);
+
+			if (list_produto.size() < 1) {
+				cad_Produto = false;
+			}
+
+		} else {
+			System.out.println("\n-----> Código do produto não encontrado\n"); // ALERT
+		}
+        
 
 	}
 }
