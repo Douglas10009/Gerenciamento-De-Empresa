@@ -70,7 +70,7 @@ public class SeachDelete /*extends Cliente - ERROR - cadastro do cliente, boolea
 	//Cliente
 	public static int buscarCnpj_Cpf(String cnpj_cpf, ArrayList<Cliente> list_cliente) {
 		for (int i = 0; i < list_cliente.size(); i++) {
-			if (list_cliente.get(i).getCnpj().equals(cnpj_cpf)) {
+			if (list_cliente.get(i).getCnpj_cpf().equals(cnpj_cpf)) {
 				return i;
 			}
 		}

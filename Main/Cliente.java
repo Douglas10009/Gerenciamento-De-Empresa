@@ -5,7 +5,7 @@
 
     private String nome = ""; 
     private String endereco = "";
-    private String cnpj = "";
+    private String cnpj_cpf = "";
     private String telefone = "";
     private int cod_cliente = 0;
     private boolean cad_Cliente = false;
@@ -34,12 +34,12 @@
         this.endereco = endereco;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public String getCnpj_cpf() {
+        return cnpj_cpf;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public void setCnpj_cpf(String cnpj_cpf) {
+        this.cnpj_cpf = cnpj_cpf;
     }
 
     public String getTelefone() {
@@ -58,9 +58,9 @@
         this.cod_cliente = cod_cliente;
     }
 
-    public Cliente (String nome, String cnpj, String endereco, String telefone, int cod_cliente){
+    public Cliente (String nome, String cnpj_cpf, String endereco, String telefone, int cod_cliente){
         this.nome = nome;
-        this.cnpj = cnpj;
+        this.cnpj_cpf = cnpj_cpf;
         this.endereco = endereco;
         this.telefone = telefone;
         this.cod_cliente = cod_cliente;
@@ -70,4 +70,3 @@
 
    
 }
-

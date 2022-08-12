@@ -105,7 +105,6 @@ public class index {
                                         break;
 
                                     case 2: // Excluir Fornecedor
-                                        System.out.println(forn.getCad_Fornecedor()); //Debug
                                         if (forn.getCad_Fornecedor() == true) {
                                             System.out.println("\n \n-- Sistema de logistica --");
                                             System.out.println("--> Excluindo o fornecedor");
@@ -138,11 +137,7 @@ public class index {
 
                                                         if (list_forn.size() < 1) {
                                                             forn.setCad_Fornecedor(false);
-                                                            System.out.println(forn.getCad_Fornecedor()); //Degub
-
-                                                            
                                                         }
-                                                        System.out.println(forn.getCad_Fornecedor()); //Degub
 
                                                     } else {
 
@@ -178,6 +173,10 @@ public class index {
                                                     if (certeza2 == 1) {
                                                         SeachDelete.apagarCodigoFornecedor(esc_Fornecedor,
                                                                 list_forn, forn.getCad_Fornecedor());
+
+                                                        if (list_forn.size() < 1) {
+                                                            forn.setCad_Fornecedor(false);
+                                                        }
 
                                                     } else {
                                                         System.out.println("\n-----> Ação cancelada\n");
@@ -249,7 +248,6 @@ public class index {
                                         break;
 
                                     case 2: // Excluir cliente
-                                        System.out.println(cliente.getCad_Cliente());//Debug
                                         if (cliente.getCad_Cliente() == true) { //MUDEI AQ
                                             System.out.println("\n \n-- Sistema de logistica --");
                                             System.out.println("--> Excluindo o cliente");
@@ -265,8 +263,8 @@ public class index {
                                                 case 1:// CNPJ
                                                     System.out.println("\nDigite um dos CNPJ/CPF para apagar: ");
 
-                                                    for (int i = 0; i < list_forn.size(); i++) {
-                                                        System.out.println(list_forn.get(i).getCnpj());// Aqui vai
+                                                    for (int i = 0; i < list_cliente.size(); i++) {
+                                                        System.out.println(list_cliente.get(i).getCnpj_cpf());// Aqui vai
                                                                                                        // mostrar os cpf
                                                                                                        // para excluir o
                                                                                                        // cliente
@@ -279,6 +277,10 @@ public class index {
 
                                                     if (certeza == 1) {
                                                         SeachDelete.apagarCnpj_Cpf(esc_CNPJ_CPF, list_cliente, cliente.getCad_Cliente());
+
+                                                        if (list_cliente.size() < 1) {
+                                                            cliente.setCad_Cliente(false);
+                                                        }
 
                                                     } else {
 
@@ -314,6 +316,10 @@ public class index {
                                                     if (certeza2 == 1) {
                                                         SeachDelete.apagarCodigoCliente(esc_cliente,
                                                                 list_cliente, cliente.getCad_Cliente());
+                                                    
+                                                        if (list_cliente.size() < 1) {
+                                                            cliente.setCad_Cliente(false);
+                                                        }
 
                                                     } else {
                                                         System.out.println("\n-----> Ação cancelada\n");
@@ -363,7 +369,7 @@ public class index {
 
                                         System.out.println("\n-- Sistema de logistica --");
                                         System.out.println("--> Cadastrando o Produto");
-                                        System.out.print("Digite o nome do Produto (Descrisão): ");
+                                        System.out.print("Digite o nome do Produto (Descrição): ");
                                         nome_produto = sc.nextLine();
                                         System.out.print("Digite o código do Produto: ");
                                         int cod_Produto = sc.nextInt();
@@ -371,13 +377,11 @@ public class index {
                                         Produto = new Produto(nome_produto, cod_Produto);
                                         Produto.setCad_Produto(true);
                                         list_produto.add(Produto);
-                                        //cad_Produto = true; // Variável para definir que criou ao menos um Produto
 
                                         System.out.println("\n-----> O Produto, " + nome_produto + " foi criado! \n"); // ALERT
                                         break;
 
                                     case 2: // Excluir Produto
-                                        System.out.println(Produto.getCad_Produto());//Debug
                                         if (Produto.getCad_Produto() == true) {
                                             System.out.println("\n \n-- Sistema de logistica --");
                                             System.out.println("--> Excluindo o Produto");
@@ -407,6 +411,10 @@ public class index {
 
                                                     if (certeza == 1) {
                                                         SeachDelete.apagarNome(esc_nome,list_produto, Produto.getCad_Produto());
+
+                                                        if (list_produto.size() < 1) {
+                                                            Produto.setCad_Produto(false);
+                                                        }
 
                                                     } else {
 
@@ -442,6 +450,11 @@ public class index {
                                                     if (certeza2 == 1) {
                                                         SeachDelete.apagarCodigoProduto(esc_Produto,
                                                                 list_produto, Produto.getCad_Produto());
+
+
+                                                        if (list_produto.size() < 1) {
+                                                            Produto.setCad_Produto(false);
+                                                        }
 
                                                     } else {
                                                         System.out.println("\n-----> Ação cancelada\n");
@@ -511,7 +524,8 @@ public class index {
                 
                 
                 case 6: // Saída
-
+                    System.out.println("Obrigado por utilizar de nossos serviços, espero de ver novamente! :) ");
+                    System.out.println("----------------------------------------------------------------");
                     break;
 
                 default:
