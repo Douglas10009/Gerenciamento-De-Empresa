@@ -8,6 +8,15 @@
     private String cnpj = "";
     private String telefone = "";
     private int cod_cliente = 0;
+    private boolean cad_Cliente = false;
+
+    public boolean getCad_Cliente() {
+        return cad_Cliente;
+    }
+
+    public void setCad_Cliente(boolean cad_Cliente) {
+        this.cad_Cliente = cad_Cliente;
+    }
 
     public String getNome() {
         return nome;

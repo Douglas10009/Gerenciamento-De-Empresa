@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Fornecedores  {
 
@@ -7,6 +6,15 @@ public class Fornecedores  {
     private String cnpj = "";
     private String telefone = "";
     private int cod_fornecedor = 0;
+    private boolean cad_Fornecedor = false;
+
+    public boolean getCad_Fornecedor() {
+        return cad_Fornecedor;
+    }
+
+    public void setCad_Fornecedor(boolean cad_Fornecedor) {
+        this.cad_Fornecedor = cad_Fornecedor;
+    }
 
     public String getNome() {
         return nome;

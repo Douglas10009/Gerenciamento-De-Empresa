@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 
-public class SeachDelete {
+public class SeachDelete /*extends Cliente - ERROR - cadastro do cliente, boolean*/{
+
+	static Fornecedores fornecedor = new Fornecedores(); //- ERROR - cadastro do cliente, boolean
 
 	//Fornecedor
 	public static int buscarCnpj(String cnpj, ArrayList<Fornecedores> list_forn) {
 		for (int i = 0; i < list_forn.size(); i++) {
 			if (list_forn.get(i).getCnpj().equals(cnpj)) {
-				//System.out.println("Posição do CNPJ para excluir: " + i); //DEBUG - Erro na lista fornecedores
 				return i;
 			}
 		}
@@ -18,23 +19,15 @@ public class SeachDelete {
 
 		if (posicao != -1) {
 			System.out.println("\n-----> Fornecedor, " + list_forn.get(posicao).getNome() + ", com o CNPJ " + cnpj + " foi apagado com sucesso. \n"); // ALERT
-			
-
-			// System.out.println(list_forn.size()); //DEBUG - Erro na lista fornecedores
-			// System.out.println(cad_Fornecedor); //DEBUG - Erro na lista fornecedores
-
 			list_forn.remove(posicao);
 
 			if (list_forn.size() < 1) {
-				cad_Fornecedor = false;
+				fornecedor.setCad_Fornecedor(false); //ERROR - cadastro do fornecedor, boolean
+				System.out.println(fornecedor.getCad_Fornecedor());//degub
+
+				//cad_Fornecedor = false;
 			}
 
-
-			// System.out.println(list_forn.size()); //DEBUG - Erro na lista fornecedores
-			// System.out.println(cad_Fornecedor); //DEBUG - Erro na lista fornecedores
-
-			
-			
 		} else {
 			System.out.println("\n-----> CNPJ Não encontrado\n"); // ALERT
 		}
@@ -44,7 +37,6 @@ public class SeachDelete {
 	public static int buscarCodigoFornecedor(int cod_fornecedor, ArrayList<Fornecedores> list_forn) {
 		for (int i = 0; i < list_forn.size(); i++) {
 			if (list_forn.get(i).getCod_fornecedor() == cod_fornecedor) {
-				//System.out.println("Posição do código do fornecedor para excluir: " + i); DEBUG
 				return i;
 			}
 		}
@@ -60,7 +52,8 @@ public class SeachDelete {
 			list_forn.remove(posicao);
 
 			if (list_forn.size() < 1) {
-				cad_Fornecedor = false;
+				fornecedor.setCad_Fornecedor(false); //ERROR - cadastro do fornecedor, boolean
+				//cad_Fornecedor = false;
 			}
 
 		} else {
