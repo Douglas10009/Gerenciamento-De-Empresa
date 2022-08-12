@@ -22,10 +22,7 @@ public class SeachDelete /*extends Cliente - ERROR - cadastro do cliente, boolea
 			list_forn.remove(posicao);
 
 			if (list_forn.size() < 1) {
-				fornecedor.setCad_Fornecedor(false); //ERROR - cadastro do fornecedor, boolean
-				System.out.println(fornecedor.getCad_Fornecedor());//degub
-
-				//cad_Fornecedor = false;
+				fornecedor.setCad_Fornecedor(false); 
 			}
 
 		} else {

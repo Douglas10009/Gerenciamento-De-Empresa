@@ -6,9 +6,9 @@ public class Fornecedores  {
     private String cnpj = "";
     private String telefone = "";
     private int cod_fornecedor = 0;
-    private boolean cad_Fornecedor = false;
+    private static boolean cad_Fornecedor = false;
 
-    public boolean getCad_Fornecedor() {
+    public static boolean getCad_Fornecedor() {
         return cad_Fornecedor;
     }
 
