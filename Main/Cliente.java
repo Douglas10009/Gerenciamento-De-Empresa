@@ -3,7 +3,7 @@
       
     // nome, endereço, cpf ou cnpj, telefone, código do cliente
 
-    private String nome = ""; 
+    private String nome = ""; //Antigo
     private String endereco = "";
     private String cnpj_cpf = "";
     private String telefone = "";
