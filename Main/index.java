@@ -25,11 +25,11 @@ public class index {
 
             // clear();
 
-            System.out.println("\n-- Menu Principal --");
+            System.out.println("\n \n-- Menu Principal --");
             System.out.println("Escolha uma opção: ");
             System.out.println("1 - Sistema de logistica - Gerenciar fornecedores/cliente/produtos");
             System.out.println("2 - Sistema de transação - Compra e Venda (BREVE)");
-            System.out.println("3 - Relatório (BREVE)");
+            System.out.println("3 - Relatório ");
             System.out.println("4 - Sair ");
             System.out.print("Digite o número da sua opção: ");
             opcao = sc.nextInt();
@@ -683,7 +683,7 @@ public class index {
 
                                         System.out.println("\n-- Sistema de logistica --");
                                         System.out.println("--> Cadastrando o Produto");
-                                        System.out.print("Digite o nome do Produt: ");
+                                        System.out.print("Digite o nome do Produto: ");
                                         nome_produto = sc.nextLine();
                                         System.out.print("Digite a quantidade desse produto: ");
                                         int quantidade_produto = sc.nextInt();
@@ -876,21 +876,37 @@ public class index {
 
 
                 case 2: // Sistema de transação
-
+                    System.out.println("-- Sistema de transação --");
+                    System.out.println("-->");
                     break;
 
                 case 3: // Relatório
+                    clear();
+                    
                     System.out.println("\n-- Relatório --");
-                    System.out.println("--> Olá! Veja o relatório, nele contem: ");
-                    System.out.println("- Quantidade de fornecedores e clientes;");
-                    System.out.println("- Valor total das compras;");
-                    System.out.println("- Os 10 produtos mais vendidos ");
+                    System.out.println("--> Olá! Veja o relatório, nele contém: ");
+                    System.out.println("// Quantidade de fornecedores e clientes;");
+                    System.out.println("// Valor total das compras;");
+                    System.out.println("// Os 10 produtos mais vendidos \n");
+
+                    System.out.println("- Há no total, " + Fornecedores.total_fornecedores + " fornecedor(es) atualmente cadastrados, que é(são): ");
+                    Fornecedores.exibirDados(list_forn); //Mostra os dados dos fornecedores
+                    sleep(3); //Espera 3 segundos antes de continuar
+
+                    System.out.println("- Há no total, " + Cliente.total_cliente + " cliente(es) atualmente cadastrados, que é(são): ");
+                    Cliente.exibirDados(list_cliente); //Mostra os dados dos fornecedores
+                    sleep(3); //Espera 3 segundos antes de continuar
+
+                    System.out.println("\n- Valor total das compras");
+
+                    System.out.println("\n- Os 10 produtos mais vendidos são: ");
+
                     break;
 
                 case 4: // Saída
                     System.out
-                            .println("\n-----> Obrigado por utilizar de nossos serviços, espero de ver novamente! :) "); //ALERT
-                    System.out.println("----------------------------------------------------------------");
+                            .println("\n-----> Obrigado por utilizar de nossos serviços, espero te ver novamente! :) "); //ALERT
+                    System.out.println("----------------------------------------------------------------\n");
                     break;
 
                 default:
@@ -908,5 +924,10 @@ public class index {
             new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
         else
             Runtime.getRuntime().exec("clear");
+    }
+
+    public static void sleep(int segundos)throws IOException, InterruptedException{
+        segundos *= 1000;//Transformar milisegundos em segundos
+        Thread.sleep(segundos);
     }
 }

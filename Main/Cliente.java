@@ -1,5 +1,6 @@
+import java.util.ArrayList;
 
- public class Cliente {
+public class Cliente {
       
     // nome, endereço, cpf ou cnpj, telefone, código do cliente
 
@@ -9,6 +10,7 @@
     private String telefone = "";
     private int cod_cliente = 0;
     private static boolean cad_Cliente = false;
+    static int total_cliente = 0;
 
     public static boolean getCadastro() {
         return cad_Cliente;
@@ -64,9 +66,22 @@
         this.endereco = endereco;
         this.telefone = telefone;
         this.cod_cliente = cod_cliente;
+        total_cliente ++;
     }
 
     public Cliente(){}
+
+    public static void exibirDados(ArrayList<Cliente> list_cliente){
+        for (int i = 0; i < Fornecedores.total_fornecedores; i++) {
+            int j = i+1;
+            System.out.println("\n-- Cliente número " + j);
+            System.out.println("\nNome: " + list_cliente.get(i).getNome()); 
+            System.out.println("Endereço: " + list_cliente.get(i).getEndereco()); 
+            System.out.println("CNPJ/CPF: " + list_cliente.get(i).getCnpj_cpf()); 
+            System.out.println("Telefone: " + list_cliente.get(i).getTelefone()); 
+            System.out.println("Código: " + list_cliente.get(i).getCodigo()); 
+        }
+    }
 
    
 }
