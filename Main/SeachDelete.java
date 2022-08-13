@@ -59,6 +59,51 @@ public class SeachDelete /*extends Cliente - ERROR - cadastro do cliente, boolea
 
 	}
 
+	public static int buscarNomeForn(String nome, ArrayList<Fornecedores> list_forn) {
+		for (int i = 0; i < list_forn.size(); i++) {
+			if (list_forn.get(i).getNome().equals(nome)) {
+				return i; //Retorna uma posição no array
+			}
+		}
+		return -1;
+	}
+
+	public static int buscarEnderecoForn(String endereco, ArrayList<Fornecedores> list_forn) {
+		for (int i = 0; i < list_forn.size(); i++) {
+			if (list_forn.get(i).getEndereco().equals(endereco)) {
+				return i; //Retorna uma posição no array
+			}
+		}
+		return -1;
+	}
+
+	public static int buscarCnpjForn(String cnpj, ArrayList<Fornecedores> list_forn) {
+		for (int i = 0; i < list_forn.size(); i++) {
+			if (list_forn.get(i).getCnpj().equals(cnpj)) {
+				return i; //Retorna uma posição no array
+			}
+		}
+		return -1;
+	}
+
+	public static int buscarTelefoneForn(String telefone, ArrayList<Fornecedores> list_forn) {
+		for (int i = 0; i < list_forn.size(); i++) {
+			if (list_forn.get(i).getTelefone().equals(telefone)) {
+				return i; //Retorna uma posição no array
+			}
+		}
+		return -1;
+	}
+
+	public static int buscarCodigoForn(int codigo, ArrayList<Fornecedores> list_forn) {
+		for (int i = 0; i < list_forn.size(); i++) {
+			if (list_forn.get(i).getCod_fornecedor() == codigo) {
+				return i; //Retorna uma posição no array
+			}
+		}
+		return -1;
+	}
+
 
 
 
@@ -92,7 +137,7 @@ public class SeachDelete /*extends Cliente - ERROR - cadastro do cliente, boolea
 
 	public static int buscarCodigoCliente(int cod_cliente, ArrayList<Cliente> list_cliente) {
 		for (int i = 0; i < list_cliente.size(); i++) {
-			if (list_cliente.get(i).getCod_cliente() == cod_cliente) {
+			if (list_cliente.get(i).getCodigo() == cod_cliente) {
 				return i;
 			}
 		}
@@ -117,12 +162,49 @@ public class SeachDelete /*extends Cliente - ERROR - cadastro do cliente, boolea
 
 	}
 
+	public static int buscarNomeCliente(String nome, ArrayList<Cliente> list_cliente) {
+		for (int i = 0; i < list_cliente.size(); i++) {
+			if (list_cliente.get(i).getNome().equals(nome)) {
+				return i; //Retorna uma posição no array
+			}
+		}
+		return -1;
+	}
+
+	public static int buscarEnderecoCliente(String endereco, ArrayList<Cliente> list_cliente) {
+		for (int i = 0; i < list_cliente.size(); i++) {
+			if (list_cliente.get(i).getEndereco().equals(endereco)) {
+				return i; //Retorna uma posição no array
+			}
+		}
+		return -1;
+	}
+
+	public static int buscarCnpjCliente(String cnpj, ArrayList<Cliente> list_cliente) {
+		for (int i = 0; i < list_cliente.size(); i++) {
+			if (list_cliente.get(i).getCnpj_cpf().equals(cnpj)) {
+				return i; //Retorna uma posição no array
+			}
+		}
+		return -1;
+	}
+
+	public static int buscarTelefoneCliente(String telefone, ArrayList<Cliente> list_cliente) {
+		for (int i = 0; i < list_cliente.size(); i++) {
+			if (list_cliente.get(i).getTelefone().equals(telefone)) {
+				return i; //Retorna uma posição no array
+			}
+		}
+		return -1;
+	}
+
+
 
 
 
 
 	//Produtos
-	public static int buscarNome(String nome, ArrayList<Produto> list_produto) {
+	public static int buscarNomeProduto(String nome, ArrayList<Produto> list_produto) {
 		for (int i = 0; i < list_produto.size(); i++) {
 			if (list_produto.get(i).getNome().equals(nome)) {
 				return i;
@@ -131,8 +213,8 @@ public class SeachDelete /*extends Cliente - ERROR - cadastro do cliente, boolea
 		return -1;
 	}
 
-	public static void apagarNome(String nome, ArrayList<Produto> list_produto, boolean cad_Produto) {
-		int posicao = buscarNome(nome, list_produto);
+	public static void apagarNomeProduto(String nome, ArrayList<Produto> list_produto, boolean cad_Produto) {
+		int posicao = buscarNomeProduto(nome, list_produto);
 
 		if (posicao != -1) {
 			System.out.println("\n-----> O Produto " + nome + " foi apagado com sucesso. \n"); // ALERT

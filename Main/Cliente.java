@@ -8,14 +8,14 @@
     private String cnpj_cpf = "";
     private String telefone = "";
     private int cod_cliente = 0;
-    private boolean cad_Cliente = false;
+    private static boolean cad_Cliente = false;
 
-    public boolean getCad_Cliente() {
+    public static boolean getCadastro() {
         return cad_Cliente;
     }
 
-    public void setCad_Cliente(boolean cad_Cliente) {
-        this.cad_Cliente = cad_Cliente;
+    public void setCadastro(boolean cad_Cliente) {
+        Cliente.cad_Cliente = cad_Cliente;
     }
 
     public String getNome() {
@@ -50,11 +50,11 @@
         this.telefone = telefone;
     }
 
-    public int getCod_cliente() {
+    public int getCodigo() {
         return cod_cliente;
     }
 
-    public void setCod_cliente(int cod_cliente) {
+    public void setCodigo(int cod_cliente) {
         this.cod_cliente = cod_cliente;
     }
 

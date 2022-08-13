@@ -21,18 +21,16 @@ public class index {
         System.out.println("--------------------------------------");
         System.out.println("\n----> Seja bem vindo a Logistica e CIA :)"); // belo trabalho
 
-        while (opcao != 6) {
+        while (opcao != 4) {
 
             // clear();
 
             System.out.println("\n-- Menu Principal --");
             System.out.println("Escolha uma opção: ");
-            System.out.println("1 - Sistema de logistica");
-            System.out.println("2 - Sistema de controle (BREVE)");
-            System.out.println("3 - Sistema de atualização de dados (BREVE)");
-            System.out.println("4 - Sistema de transação - Compra e Venda (BREVE)");
-            System.out.println("5 - Relatório (BREVE)");
-            System.out.println("6 - Sair ");
+            System.out.println("1 - Sistema de logistica - Gerenciar fornecedores/cliente/produtos");
+            System.out.println("2 - Sistema de transação - Compra e Venda (BREVE)");
+            System.out.println("3 - Relatório (BREVE)");
+            System.out.println("4 - Sair ");
             System.out.print("Digite o número da sua opção: ");
             opcao = sc.nextInt();
 
@@ -132,7 +130,7 @@ public class index {
 
                                                     if (certeza == 1) {
                                                         SeachDelete.apagarCnpj(esc_CNPJ, list_forn,
-                                                                forn.getCad_Fornecedor());
+                                                                Fornecedores.getCad_Fornecedor());
 
                                                         if (list_forn.size() < 1) {
                                                             forn.setCad_Fornecedor(false);
@@ -171,7 +169,7 @@ public class index {
 
                                                     if (certeza2 == 1) {
                                                         SeachDelete.apagarCodigoFornecedor(esc_Fornecedor,
-                                                                list_forn, forn.getCad_Fornecedor());
+                                                                list_forn, Fornecedores.getCad_Fornecedor());
 
                                                         if (list_forn.size() < 1) {
                                                             forn.setCad_Fornecedor(false);
@@ -186,48 +184,153 @@ public class index {
                                                 default:
                                                     break;
                                             }
-
                                         } else {
                                             System.out.println(
                                                     "\n----------> Não há fornecedores cadastrados, cadastre um forncecedor\n"); // ALERT
                                         }
-                                        
                                         break;
-
                                     case 3: // Atualizar dados
 
-                                        if (forn.getCad_Fornecedor() == true) {
+                                        if (Fornecedores.getCad_Fornecedor() == true) {
                                             System.out.println("\n-- Sistema de logistica --");
                                             System.out.println("--> Atualizar dados do fornecedor");
                                             System.out.println("Digite qual dado atualizar: ");
 
+                                            // Para melhor pesquisa, aumentamos os horizontes de pesquisa
                                             System.out.println("1 - Nome");
                                             System.out.println("2 - Endereço");
                                             System.out.println("3 - CNPJ");
                                             System.out.println("4 - Telefone");
                                             System.out.println("5 - Código do fornecedor");
 
-                                            int opc_atualizar_fornecedor = sc.nextInt();
+                                            System.out.print("Escolha um número: ");
+                                            int opc_atualizar = sc.nextInt();
 
-                                            switch (opc_atualizar_fornecedor) {
+                                            switch (opc_atualizar) {
                                                 case 1: // Atualizar nome
+                                                    System.out.println("\nDigite o nome para atualizar");
+                                                    for (int i = 0; i < list_forn.size(); i++) {
+                                                        System.out.println(list_forn.get(i).getNome());// Aqui vai
+                                                                                                       // mostrar os
+                                                                                                       // nomes
+                                                    }
 
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    sc.nextLine(); // Tirar o enter do buffer
+                                                    String ESC_nome = sc.nextLine();
+
+                                                    if (SeachDelete.buscarNomeForn(ESC_nome, list_forn) > -1) {
+                                                        System.out.print("Digite o novo nome: ");
+                                                        forn.setNome(sc.nextLine());
+
+                                                        System.out.println("\n-----> Nome atualizado, O novo nome é: "
+                                                                + forn.getNome() + "\n"); // ALERT
+                                                    } else {
+                                                        System.out.println("\n-----> Nome não encontrado!\n"); // ALERT
+                                                    }
 
                                                     break;
 
                                                 case 2: // Atualizar endereço
 
+                                                    for (int i = 0; i < list_forn.size(); i++) {
+                                                        System.out.println(list_forn.get(i).getEndereco());// Aqui vai
+                                                        // mostrar os
+                                                        // Endereços
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    sc.nextLine(); // Tirar o enter do buffer
+                                                    String ESC_endereco = sc.nextLine();
+
+                                                    if (SeachDelete.buscarEnderecoForn(ESC_endereco, list_forn) > -1) {
+                                                        System.out.print("Digite o novo endereço: ");
+                                                        forn.setEndereco(sc.nextLine());
+
+                                                        System.out.println(
+                                                                "\n-----> Endereço atualizado, O novo endereço é: "
+                                                                        + forn.getEndereco() + "\n"); // ALERT
+                                                    } else {
+                                                        System.out.println("\n-----> Endereço não encontrado!\n"); // ALERT
+                                                    }
+
                                                     break;
 
                                                 case 3: // Atualizar CNPJ
+
+                                                    System.out.println("\nDigite o cnpj para atualizar");
+                                                    for (int i = 0; i < list_forn.size(); i++) {
+                                                        System.out.println(list_forn.get(i).getCnpj());// Aqui vai
+                                                                                                       // mostrar os
+                                                                                                       // cnpjs
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    sc.nextLine(); // Tirar o enter do buffer
+                                                    String ESC_cnpj = sc.nextLine();
+
+                                                    if (SeachDelete.buscarCnpjForn(ESC_cnpj, list_forn) > -1) {
+                                                        System.out.print("Digite o novo cnpj: ");
+                                                        forn.setCnpj(sc.nextLine());
+
+                                                        System.out.println("\n-----> Cnpj atualizado, O novo cnpj é: "
+                                                                + forn.getCnpj() + "\n"); // ALERT
+                                                    } else {
+                                                        System.out.println("\n-----> cnpj não encontrado!\n"); // ALERT
+                                                    }
 
                                                     break;
 
                                                 case 4: // Atualizar Telefone
 
+                                                    System.out.println("\nDigite o telefone para atualizar");
+                                                    for (int i = 0; i < list_forn.size(); i++) {
+                                                        System.out.println(list_forn.get(i).getTelefone());// Aqui vai
+                                                        // mostrar os
+                                                        // telefones
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    sc.nextLine(); // Tirar o enter do buffer
+                                                    String ESC_telefone = sc.nextLine();
+
+                                                    if (SeachDelete.buscarTelefoneForn(ESC_telefone, list_forn) > -1) {
+                                                        System.out.print("Digite o novo telefone: ");
+                                                        forn.setTelefone(sc.nextLine());
+
+                                                        System.out.println(
+                                                                "\n-----> Telefone atualizado, O novo telefone é: "
+                                                                        + forn.getTelefone() + "\n"); // ALERT
+                                                    } else {
+                                                        System.out.println("\n-----> telefone não encontrado!\n"); // ALERT
+                                                    }
+
                                                     break;
 
                                                 case 5: // Atualizar Código do fornecedor
+
+                                                    System.out.println("\nDigite o código para atualizar");
+                                                    for (int i = 0; i < list_forn.size(); i++) {
+                                                        System.out.println(list_forn.get(i).getCod_fornecedor());// Aqui
+                                                                                                                 // vai
+                                                        // mostrar os
+                                                        // códigos
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    // sc.nextLine(); // Tirar o enter do buffer
+                                                    int ESC_codigo = sc.nextInt();
+
+                                                    if (SeachDelete.buscarCodigoForn(ESC_codigo, list_forn) > -1) {
+                                                        System.out.print("Digite o novo código: ");
+                                                        forn.setCod_fornecedor(sc.nextInt());
+
+                                                        System.out.println(
+                                                                "\n-----> Código atualizado, O novo código é: "
+                                                                        + forn.getCod_fornecedor() + "\n"); // ALERT
+                                                    } else {
+                                                        System.out.println("\n-----> código não encontrado!\n"); // ALERT
+                                                    }
 
                                                     break;
                                                 default:
@@ -235,7 +338,8 @@ public class index {
                                             }
                                             break;
                                         } else {
-                                            System.out.println("\n----------> Não há fornecedores cadastrados, cadastre um forncecedor\n"); // ALERT
+                                            System.out.println(
+                                                    "\n----------> Não há fornecedores cadastrados, cadastre um forncecedor\n"); // ALERT
 
                                         }
 
@@ -250,14 +354,15 @@ public class index {
 
                             Cliente cliente = new Cliente(); // Construtor do cliente
 
-                            while (opcao_log_cliente != 3) {
+                            while (opcao_log_cliente != 4) {
 
                                 System.out.println("-- Sistema de logistica --");
                                 System.out.println("-> Cliente ");
                                 System.out.println("Escolha uma opção -");
                                 System.out.println("1 - Cadastrar cliente");
                                 System.out.println("2 - Excluir cliente");
-                                System.out.println("3 - Voltar");
+                                System.out.println("3 - Atualizar dados");
+                                System.out.println("4 - Voltar");
                                 System.out.print("Digite o número da sua opção: ");
                                 opcao_log_cliente = sc.nextInt();
                                 sc.nextLine(); // Tirar enter do buffer
@@ -284,8 +389,8 @@ public class index {
 
                                         cliente = new Cliente(nome_cliente, cnpj_cpf_cliente, endereco_cliente,
                                                 telefone, cod_cliente);
-                                        cliente.setCad_Cliente(true);// Variável para definir que criou ao menos um
-                                                                     // cliente -- MUDEI AQ
+                                        cliente.setCadastro(true);// Variável para definir que criou ao menos um
+                                                                  // cliente -- MUDEI AQ
                                         list_cliente.add(cliente);
 
                                         // cad_Cliente = true;
@@ -294,7 +399,7 @@ public class index {
                                         break;
 
                                     case 2: // Excluir cliente
-                                        if (cliente.getCad_Cliente() == true) { // MUDEI AQ
+                                        if (Cliente.getCadastro() == true) { // MUDEI AQ
                                             System.out.println("\n \n-- Sistema de logistica --");
                                             System.out.println("--> Excluindo o cliente");
                                             System.out.println("1 - CNPJ");
@@ -324,10 +429,10 @@ public class index {
 
                                                     if (certeza == 1) {
                                                         SeachDelete.apagarCnpj_Cpf(esc_CNPJ_CPF, list_cliente,
-                                                                cliente.getCad_Cliente());
+                                                                Cliente.getCadastro());
 
                                                         if (list_cliente.size() < 1) {
-                                                            cliente.setCad_Cliente(false);
+                                                            cliente.setCadastro(false);
                                                         }
 
                                                     } else {
@@ -345,15 +450,15 @@ public class index {
                                                             "\nDigite um dos códigos dos Cliente para apagar: ");
 
                                                     for (int i = 0; i < list_cliente.size(); i++) {
-                                                        System.out.println(list_cliente.get(i).getCod_cliente());// Aq
-                                                                                                                 // vai
-                                                                                                                 // mostrar
-                                                                                                                 // os
-                                                                                                                 // cpf
-                                                                                                                 // para
-                                                                                                                 // excluir
-                                                                                                                 // o
-                                                                                                                 // cliente
+                                                        System.out.println(list_cliente.get(i).getCodigo());// Aq
+                                                                                                            // vai
+                                                                                                            // mostrar
+                                                                                                            // os
+                                                                                                            // cpf
+                                                                                                            // para
+                                                                                                            // excluir
+                                                                                                            // o
+                                                                                                            // cliente
                                                     }
                                                     System.out.print("\nDigite sua escolha:");
                                                     int esc_cliente = sc.nextInt();
@@ -363,10 +468,10 @@ public class index {
 
                                                     if (certeza2 == 1) {
                                                         SeachDelete.apagarCodigoCliente(esc_cliente,
-                                                                list_cliente, cliente.getCad_Cliente());
+                                                                list_cliente, Cliente.getCadastro());
 
                                                         if (list_cliente.size() < 1) {
-                                                            cliente.setCad_Cliente(false);
+                                                            cliente.setCadastro(false);
                                                         }
 
                                                     } else {
@@ -375,6 +480,8 @@ public class index {
                                                     }
                                                     break;
 
+                                                // a
+
                                                 default:
                                                     break;
                                             }
@@ -382,6 +489,165 @@ public class index {
                                         } else {
                                             System.out.println(
                                                     "\n----------> Não há Cliente cadastrados, cadastre um cliente\n"); // ALERT
+                                        }
+                                        break;
+                                    case 3: // Atualizar dados
+
+                                        if (Cliente.getCadastro() == true) {
+                                            System.out.println("\n-- Sistema de logistica --");
+                                            System.out.println("--> Atualizar dados do cliente");
+                                            System.out.println("Digite qual dado atualizar: ");
+
+                                            // Para melhor pesquisa, aumentamos os horizontes de pesquisa
+                                            System.out.println("1 - Nome");
+                                            System.out.println("2 - Endereço");
+                                            System.out.println("3 - CNPJ");
+                                            System.out.println("4 - Telefone");
+                                            System.out.println("5 - Código do cliente");
+
+                                            System.out.print("Escolha um número: ");
+                                            int opc_atualizar = sc.nextInt();
+
+                                            switch (opc_atualizar) {
+                                                case 1: // Atualizar nome
+                                                    System.out.println("\nDigite o nome para atualizar");
+                                                    for (int i = 0; i < list_cliente.size(); i++) {
+                                                        System.out.println(list_cliente.get(i).getNome());// Aqui vai
+                                                                                                          // mostrar os
+                                                                                                          // nomes
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    sc.nextLine(); // Tirar o enter do buffer
+                                                    String ESC_nome = sc.nextLine();
+
+                                                    if (SeachDelete.buscarNomeCliente(ESC_nome, list_cliente) > -1) {
+                                                        System.out.print("Digite o novo nome: ");
+                                                        cliente.setNome(sc.nextLine());
+
+                                                        System.out.println("\n-----> Nome atualizado, O novo nome é: "
+                                                                + cliente.getNome() + "\n"); // ALERT
+                                                    } else {
+                                                        System.out.println("\n-----> Nome não encontrado!\n"); // ALERT
+                                                    }
+
+                                                    break;
+
+                                                case 2: // Atualizar endereço
+
+                                                    for (int i = 0; i < list_cliente.size(); i++) {
+                                                        System.out.println(list_cliente.get(i).getEndereco());// Aqui
+                                                                                                              // vai
+                                                        // mostrar os
+                                                        // Endereços
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    sc.nextLine(); // Tirar o enter do buffer
+                                                    String ESC_endereco = sc.nextLine();
+
+                                                    if (SeachDelete.buscarEnderecoCliente(ESC_endereco,
+                                                            list_cliente) > -1) {
+                                                        System.out.print("Digite o novo endereço: ");
+                                                        cliente.setEndereco(sc.nextLine());
+
+                                                        System.out.println(
+                                                                "\n-----> Endereço atualizado, O novo endereço é: "
+                                                                        + cliente.getEndereco() + "\n"); // ALERT
+                                                    } else {
+                                                        System.out.println("\n-----> Endereço não encontrado!\n"); // ALERT
+                                                    }
+
+                                                    break;
+
+                                                case 3: // Atualizar CNPJ
+
+                                                    System.out.println("\nDigite o cnpj para atualizar");
+                                                    for (int i = 0; i < list_cliente.size(); i++) {
+                                                        System.out.println(list_cliente.get(i).getCnpj_cpf());// Aqui
+                                                                                                              // vai
+                                                        // mostrar os
+                                                        // cnpjs
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    sc.nextLine(); // Tirar o enter do buffer
+                                                    String ESC_cnpj = sc.nextLine();
+
+                                                    if (SeachDelete.buscarCnpjCliente(ESC_cnpj, list_cliente) > -1) {
+                                                        System.out.print("Digite o novo cnpj: ");
+                                                        cliente.setCnpj_cpf(sc.nextLine());
+
+                                                        System.out.println("\n-----> Cnpj atualizado, O novo cnpj é: "
+                                                                + cliente.getCnpj_cpf() + "\n"); // ALERT
+                                                    } else {
+                                                        System.out.println("\n-----> cnpj não encontrado!\n"); // ALERT
+                                                    }
+
+                                                    break;
+
+                                                case 4: // Atualizar Telefone
+
+                                                    System.out.println("\nDigite o telefone para atualizar");
+                                                    for (int i = 0; i < list_cliente.size(); i++) {
+                                                        System.out.println(list_cliente.get(i).getTelefone());// Aqui
+                                                                                                              // vai
+                                                        // mostrar os
+                                                        // telefones
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    sc.nextLine(); // Tirar o enter do buffer
+                                                    String ESC_telefone = sc.nextLine();
+
+                                                    if (SeachDelete.buscarTelefoneCliente(ESC_telefone,
+                                                            list_cliente) > -1) {
+                                                        System.out.print("Digite o novo telefone: ");
+                                                        cliente.setTelefone(sc.nextLine());
+
+                                                        System.out.println(
+                                                                "\n-----> Telefone atualizado, O novo telefone é: "
+                                                                        + cliente.getTelefone() + "\n"); // ALERT
+                                                    } else {
+                                                        System.out.println("\n-----> telefone não encontrado!\n"); // ALERT
+                                                    }
+
+                                                    break;
+
+                                                case 5: // Atualizar Código do cliente
+
+                                                    System.out.println("\nDigite o código para atualizar");
+                                                    for (int i = 0; i < list_cliente.size(); i++) {
+                                                        System.out.println(list_cliente.get(i).getCodigo());// Aqui vai
+                                                        // mostrar os
+                                                        // códigos
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    // sc.nextLine(); // Tirar o enter do buffer
+                                                    int ESC_codigo = sc.nextInt();
+
+                                                    if (SeachDelete.buscarCodigoCliente(ESC_codigo,
+                                                            list_cliente) > -1) {
+                                                        System.out.print("Digite o novo código: ");
+                                                        cliente.setCodigo(sc.nextInt());
+
+                                                        System.out.println(
+                                                                "\n-----> Código atualizado, O novo código é: "
+                                                                        + cliente.getCodigo() + "\n"); // ALERT
+                                                    } else {
+                                                        System.out.println("\n-----> código não encontrado!\n"); // ALERT
+                                                    }
+
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                            break;
+                                        } else {
+                                            System.out.println(
+                                                    "\n----------> Não há fornecedores cadastrados, cadastre um forncecedor\n"); // ALERT
+
                                         }
                                         break;
 
@@ -396,15 +662,15 @@ public class index {
 
                             Produto Produto = new Produto(); // Construtor do produto
 
-                            while (opcao_log_produto != 3) {
+                            while (opcao_log_produto != 4) {
 
                                 System.out.println("-- Sistema de logistica --");
                                 System.out.println("-> Produto ");
                                 System.out.println("Escolha uma opção -");
                                 System.out.println("1 - Cadastrar produto");
                                 System.out.println("2 - Excluir produto");
-
-                                System.out.println("3 - Voltar");
+                                System.out.println("3 - Atualizar dados");
+                                System.out.println("4 - Voltar");
                                 System.out.print("Digite o número da sua opção: ");
                                 opcao_log_produto = sc.nextInt();
                                 sc.nextLine(); // Tirar enter do buffer
@@ -419,10 +685,12 @@ public class index {
                                         System.out.println("--> Cadastrando o Produto");
                                         System.out.print("Digite o nome do Produto (Descrição): ");
                                         nome_produto = sc.nextLine();
+                                        System.out.print("Digite a quantidade desse produto: ");
+                                        int quantidade_produto = sc.nextInt();
                                         System.out.print("Digite o código do Produto: ");
                                         int cod_Produto = sc.nextInt();
 
-                                        Produto = new Produto(nome_produto, cod_Produto);
+                                        Produto = new Produto(nome_produto, quantidade_produto, cod_Produto);
                                         Produto.setCad_Produto(true);
                                         list_produto.add(Produto);
 
@@ -460,7 +728,7 @@ public class index {
                                                     int certeza = sc.nextInt();
 
                                                     if (certeza == 1) {
-                                                        SeachDelete.apagarNome(esc_nome, list_produto,
+                                                        SeachDelete.apagarNomeProduto(esc_nome, list_produto,
                                                                 Produto.getCad_Produto());
 
                                                         if (list_produto.size() < 1) {
@@ -522,13 +790,81 @@ public class index {
                                         }
                                         break;
 
-                                    default:
+                                    
+                                    
+                                    case 3: // Atualizar dados
+
+                                        if (Produto.getCad_Produto() == true) {
+                                            System.out.println("\n-- Sistema de logistica --");
+                                            System.out.println("--> Atualizar dados do produto");
+                                            System.out.println("Digite qual dado atualizar: ");
+
+                                            // Para melhor pesquisa, aumentamos os horizontes de pesquisa
+                                            System.out.println("1 - Nome");
+                                            System.out.println("2 - Código do produto");
+
+                                            System.out.print("Escolha um número: ");
+                                            int opc_atualizar = sc.nextInt();
+
+                                            switch (opc_atualizar) {
+                                                case 1: // Atualizar nome
+                                                    System.out.println("\nDigite o nome do produto para atualizar");
+                                                    for (int i = 0; i < list_produto.size(); i++) {
+                                                        System.out.println(list_produto.get(i).getNome());// Aqui vai
+                                                                                                          // mostrar os
+                                                                                                          // nomes
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    sc.nextLine(); // Tirar o enter do buffer
+                                                    String ESC_nome = sc.nextLine();
+
+                                                    if (SeachDelete.buscarNomeProduto(ESC_nome, list_produto) > -1) {
+                                                        System.out.print("Digite o novo nome: ");
+                                                        Produto.setNome(sc.nextLine());
+
+                                                        System.out.println("\n-----> Nome atualizado, O novo nome é: "
+                                                                + Produto.getNome() + "\n"); // ALERT
+                                                    } else {
+                                                        System.out.println("\n-----> Nome não encontrado!\n"); // ALERT
+                                                    }
+
+                                                    break;
+
+                                                case 2: // Atualizar Código do produto
+
+                                                    System.out.println("\nDigite o código para atualizar");
+                                                    for (int i = 0; i < list_produto.size(); i++) {
+                                                        System.out.println(list_produto.get(i).getCodigo());// Aqui vai
+                                                        // mostrar os
+                                                        // códigos
+                                                    }
+
+                                                    System.out.print("\nDigite sua escolha:");
+                                                    int ESC_codigo = sc.nextInt();
+
+                                                    if (SeachDelete.buscarCodigoProduto(ESC_codigo,
+                                                            list_produto) > -1) {
+                                                        System.out.print("Digite o novo código: ");
+                                                        Produto.setCodigo(sc.nextInt());
+
+                                                        System.out.println(
+                                                                "\n-----> Código atualizado, O novo código é: "
+                                                                        + Produto.getCodigo() + "\n"); // ALERT
+                                                    } else {
+                                                        System.out.println("\n-----> código não encontrado!\n"); // ALERT
+                                                    }
+
+                                                    break;
+
+                                                default:
+                                                    break;
+                                            }
+                                        }
                                         break;
+                                            
                                 }
                             }
-                            break;
-                        
-                        case 4: //Saida
                             break;
 
                         default:
@@ -536,24 +872,18 @@ public class index {
                     }
                     break;
 
-                case 2:// Sistema de Controle
+
+                case 2: // Sistema de transação
 
                     break;
 
-                case 3: // Sistema de atualização de dados
+                case 3: // Relatório
 
                     break;
 
-                case 4: // Sistema de transação
-
-                    break;
-
-                case 5: // Relatório
-
-                    break;
-
-                case 6: // Saída
-                    System.out.println("\n-----> Obrigado por utilizar de nossos serviços, espero de ver novamente! :) ");
+                case 4: // Saída
+                    System.out
+                            .println("\n-----> Obrigado por utilizar de nossos serviços, espero de ver novamente! :) "); //ALERT
                     System.out.println("----------------------------------------------------------------");
                     break;
 
@@ -565,8 +895,6 @@ public class index {
         sc.close();
 
     }
-
-    
 
     public static void clear() throws IOException, InterruptedException { // Método 2 para limpar a tela
         // Limpa a tela no windows, no linux e no MacOS

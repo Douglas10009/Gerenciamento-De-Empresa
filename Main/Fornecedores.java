@@ -13,7 +13,7 @@ public class Fornecedores  {
     }
 
     public void setCad_Fornecedor(boolean cad_Fornecedor) {
-        this.cad_Fornecedor = cad_Fornecedor;
+        Fornecedores.cad_Fornecedor = cad_Fornecedor;
     }
 
     public String getNome() {
@@ -65,6 +65,11 @@ public class Fornecedores  {
     }
 
     public Fornecedores(){}
+
+    // public void atualizar_nome(String nome_novo,  ){
+    //     SeachDelete.buscarNomeForn(esc_Nome, list_forn);
+
+    // }
     
     
 }
