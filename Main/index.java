@@ -880,7 +880,11 @@ public class index {
                     break;
 
                 case 3: // Relatório
-
+                    System.out.println("\n-- Relatório --");
+                    System.out.println("--> Olá! Veja o relatório, nele contem: ");
+                    System.out.println("- Quantidade de fornecedores e clientes;");
+                    System.out.println("- Valor total das compras;");
+                    System.out.println("- Os 10 produtos mais vendidos ");
                     break;
 
                 case 4: // Saída
