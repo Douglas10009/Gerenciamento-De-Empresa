@@ -906,11 +906,11 @@ public class index {
 
                     System.out.println("- Há no total, " + Fornecedores.total_fornecedores + " fornecedor(es) atualmente cadastrados, que é(são): ");
                     Fornecedores.exibirDados(list_forn); //Mostra os dados dos fornecedores
-                    sleep(3); //Espera 3 segundos antes de continuar
+                    sleep(2); //Espera 3 segundos antes de continuar
 
                     System.out.println("- Há no total, " + Cliente.total_cliente + " cliente(es) atualmente cadastrados, que é(são): ");
                     Cliente.exibirDados(list_cliente); //Mostra os dados dos fornecedores
-                    sleep(3); //Espera 3 segundos antes de continuar
+                    sleep(2); //Espera 3 segundos antes de continuar
 
                     System.out.println("\n- Valor total das compras");
 
