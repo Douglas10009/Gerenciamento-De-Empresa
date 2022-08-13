@@ -3,8 +3,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class index {
-    public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
+    public static final String ANSI_BOLD = "\u001B[1m";
+    public static final String ANSI_ITALIC = "\u001B[3m";
 
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner sc = new Scanner(System.in);
@@ -670,7 +674,8 @@ public class index {
                                 System.out.println("-- Sistema de logistica --");
                                 System.out.println("-> Produto ");
 
-                                System.out.println("\n" +ANSI_RED +"Atenção! Todo produto criado pertençe ao fornecedor"+ ANSI_RESET +"\n");
+                                System.out.println("\n" + ANSI_RED
+                                        + "Atenção! Todo produto criado pertençe ao fornecedor" + ANSI_RESET + "\n");
 
                                 System.out.println("Escolha uma opção -");
                                 System.out.println("1 - Cadastrar produto");
@@ -698,7 +703,8 @@ public class index {
                                         System.out.print("Digite o código do Produto: ");
                                         int cod_Produto = sc.nextInt();
 
-                                        Produto = new Produto(nome_produto, quantidade_produto, cod_Produto, preco_produto);
+                                        Produto = new Produto(nome_produto, quantidade_produto, cod_Produto,
+                                                preco_produto);
                                         Produto.setCad_Produto(true);
                                         list_produto.add(Produto);
 
@@ -798,8 +804,6 @@ public class index {
                                         }
                                         break;
 
-                                    
-                                    
                                     case 3: // Atualizar dados
 
                                         if (Produto.getCad_Produto() == true) {
@@ -870,7 +874,7 @@ public class index {
                                             }
                                         }
                                         break;
-                                            
+
                                 }
                             }
                             break;
@@ -880,37 +884,57 @@ public class index {
                     }
                     break;
 
-
                 case 2: // Sistema de transação
                     clear();
+                    if (list_produto.size() > 0) { // Verifica se há produtos cadastrados para o fornecedor
+                        System.out.println("-- Sistema de transação --");
+                        System.out.println("--> Primeiro, queremos saber quem é você!");
+                        System.out.println("1- Empresa (Comprar do fornecedor - Vender para os clientes) ");
+                        System.out.println("2 - Cliente (Comprar da empresa)");
 
-                    System.out.println("-- Sistema de transação --");
-                    System.out.println("--> Primeiro, queremos saber quem é você!");
-                    System.out.println("1- Empresa (Comprar do fornecedor - Vender para os clientes) ");
-                    System.out.println("2 - Cliente (Comprar da empresa)");
+                        System.out.print("Digite o número da sua opção: ");
+                        int opcao_transacao = sc.nextInt();
 
-                    System.out.print("Digite o número da sua opção: ");
-                    int opcao_transacao = sc.nextInt();
+                        switch (opcao_transacao) {
+                            case 1:
+                                System.out.println("-- Sistema de transação --");
+                                System.out.println("--> Empresa");
+                                break;
+                            case 2:
 
+                                break;
+
+                            default:
+                                System.out.println("\n-----> Opção Inválida\n"); // ALERT
+                                break;
+                        }
+                    } else {
+                        System.out.println(ANSI_RED
+                                + "\n-----> Não há produtos cadastrados, por favor, tente mais tarde;" + ANSI_RESET); // ALERT
+                        System.out.println(ANSI_ITALIC
+                                + "-----> Caso seja um fornecedor, por favor, cadastre seus produtos" + ANSI_RESET + "\n"); // ALERT
+                    }
 
                     break;
 
                 case 3: // Relatório
                     clear();
-                    
+
                     System.out.println("\n-- Relatório --");
                     System.out.println("--> Olá! Veja o relatório, nele contém: ");
                     System.out.println("// Quantidade de fornecedores e clientes;");
                     System.out.println("// Valor total das compras;");
                     System.out.println("// Os 10 produtos mais vendidos \n");
 
-                    System.out.println("- Há no total, " + Fornecedores.total_fornecedores + " fornecedor(es) atualmente cadastrados, que é(são): ");
-                    Fornecedores.exibirDados(list_forn); //Mostra os dados dos fornecedores
-                    sleep(2); //Espera 3 segundos antes de continuar
+                    System.out.println("- Há no total, " + Fornecedores.total_fornecedores
+                            + " fornecedor(es) atualmente cadastrados, que é(são): ");
+                    Fornecedores.exibirDados(list_forn); // Mostra os dados dos fornecedores
+                    sleep(2); // Espera 3 segundos antes de continuar
 
-                    System.out.println("- Há no total, " + Cliente.total_cliente + " cliente(es) atualmente cadastrados, que é(são): ");
-                    Cliente.exibirDados(list_cliente); //Mostra os dados dos fornecedores
-                    sleep(2); //Espera 3 segundos antes de continuar
+                    System.out.println("- Há no total, " + Cliente.total_cliente
+                            + " cliente(es) atualmente cadastrados, que é(são): ");
+                    Cliente.exibirDados(list_cliente); // Mostra os dados dos fornecedores
+                    sleep(2); // Espera 3 segundos antes de continuar
 
                     System.out.println("\n- Valor total das compras");
 
@@ -920,7 +944,7 @@ public class index {
 
                 case 4: // Saída
                     System.out
-                            .println("\n-----> Obrigado por utilizar de nossos serviços, espero te ver novamente! :) "); //ALERT
+                            .println("\n-----> Obrigado por utilizar de nossos serviços, espero te ver novamente! :) "); // ALERT
                     System.out.println("----------------------------------------------------------------\n");
                     break;
 
@@ -941,10 +965,9 @@ public class index {
             Runtime.getRuntime().exec("clear");
     }
 
-    public static void sleep(int segundos)throws IOException, InterruptedException{
-        segundos *= 1000;//Transformar milisegundos em segundos
+    public static void sleep(int segundos) throws IOException, InterruptedException {
+        segundos *= 1000;// Transformar milisegundos em segundos
         Thread.sleep(segundos);
     }
 
-    
 }
