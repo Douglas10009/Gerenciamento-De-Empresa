@@ -895,10 +895,27 @@ public class index {
                         System.out.print("Digite o número da sua opção: ");
                         int opcao_transacao = sc.nextInt();
 
+                        int opc_produto = 0;
                         switch (opcao_transacao) {
                             case 1:
-                                System.out.println("-- Sistema de transação --");
-                                System.out.println("--> Empresa");
+                                while (opc_produto > -1) {
+                                    System.out.println("\n-- Sistema de transação --");
+                                    System.out.println("--> Empresa");
+
+                                    Produto.exibirDados(list_produto);
+
+                                    System.out.println(ANSI_BOLD + "-----> Digite um número negativo para finalizar a compra" + ANSI_RESET);
+                                    
+                                    System.out.print("\nDigite o código do produto desejado para comprar: ");
+                                    opc_produto = sc.nextInt();
+
+                                    if (SeachDelete.buscarCodigoProduto(opc_produto, list_produto) > -1) {
+                                        
+                                    } else {
+                                        System.out.println("\n-----> Produto não encontrado\n");
+                                    }
+                                }
+
                                 break;
                             case 2:
 
@@ -907,12 +924,14 @@ public class index {
                             default:
                                 System.out.println("\n-----> Opção Inválida\n"); // ALERT
                                 break;
+
                         }
                     } else {
                         System.out.println(ANSI_RED
                                 + "\n-----> Não há produtos cadastrados, por favor, tente mais tarde;" + ANSI_RESET); // ALERT
                         System.out.println(ANSI_ITALIC
-                                + "-----> Caso seja um fornecedor, por favor, cadastre seus produtos" + ANSI_RESET + "\n"); // ALERT
+                                + "-----> Caso seja um fornecedor, por favor, cadastre seus produtos" + ANSI_RESET
+                                + "\n"); // ALERT
                     }
 
                     break;

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Produto {
 
 	private int codigo = 0;
@@ -19,20 +21,33 @@ public class Produto {
 		this.nome = nome;
 		this.quantidade_produto = quantidade_produto;
 		this.preco_produto = preco_produto;
-		
+
 	}
-	
-	public Produto() {}
+
+	public static void exibirDados(ArrayList<Produto> list) {
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println("\nNome do produto: " + list.get(i).getNome());
+			System.out.println("Preço do produto: " + list.get(i).getPreco_produto());
+			System.out.println("Quantidade do produto: " + list.get(i).getQuantidade_produto());
+			System.out.println("Código do produto: " + list.get(i).getCodigo() + "\n");
+		}
+	}
+
+	public Produto() {
+	}
 
 	public int getCodigo() {
 		return codigo;
 	}
+
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -46,12 +61,11 @@ public class Produto {
 	}
 
 	public boolean getCad_Produto() {
-        return cadastro;
-    }
+		return cadastro;
+	}
 
-    public  void setCad_Produto(boolean cad_Produto) {
-        Produto.cadastro = cad_Produto;
-    }
+	public void setCad_Produto(boolean cad_Produto) {
+		Produto.cadastro = cad_Produto;
+	}
 
-	
 }
