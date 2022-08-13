@@ -4,11 +4,21 @@ public class Produto {
 	private String nome = "";
 	private static boolean cadastro = false;
 	private int quantidade_produto = 0;
+	private double preco_produto = 0;
 
-	public Produto(String nome, int quantidade_produto, int codigo) {
+	public double getPreco_produto() {
+		return preco_produto;
+	}
+
+	public void setPreco_produto(double preco_produto) {
+		this.preco_produto = preco_produto;
+	}
+
+	public Produto(String nome, int quantidade_produto, int codigo, double preco_produto) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.quantidade_produto = quantidade_produto;
+		this.preco_produto = preco_produto;
 		
 	}
 	

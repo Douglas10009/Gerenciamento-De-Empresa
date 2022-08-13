@@ -683,14 +683,16 @@ public class index {
 
                                         System.out.println("\n-- Sistema de logistica --");
                                         System.out.println("--> Cadastrando o Produto");
-                                        System.out.print("Digite o nome do Produto (Descrição): ");
+                                        System.out.print("Digite o nome do Produt: ");
                                         nome_produto = sc.nextLine();
                                         System.out.print("Digite a quantidade desse produto: ");
                                         int quantidade_produto = sc.nextInt();
+                                        System.out.print("Digite o preço desse produto: ");
+                                        double preco_produto = sc.nextDouble();
                                         System.out.print("Digite o código do Produto: ");
                                         int cod_Produto = sc.nextInt();
 
-                                        Produto = new Produto(nome_produto, quantidade_produto, cod_Produto);
+                                        Produto = new Produto(nome_produto, quantidade_produto, cod_Produto, preco_produto);
                                         Produto.setCad_Produto(true);
                                         list_produto.add(Produto);
 
