@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class index {
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_RESET = "\u001B[0m";
+
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner sc = new Scanner(System.in);
 
@@ -666,6 +669,9 @@ public class index {
 
                                 System.out.println("-- Sistema de logistica --");
                                 System.out.println("-> Produto ");
+
+                                System.out.println("\n" +ANSI_RED +"Atenção! Todo produto criado pertençe ao fornecedor"+ ANSI_RESET +"\n");
+
                                 System.out.println("Escolha uma opção -");
                                 System.out.println("1 - Cadastrar produto");
                                 System.out.println("2 - Excluir produto");
@@ -677,7 +683,7 @@ public class index {
 
                                 switch (opcao_log_produto) {
 
-                                    case 1:// Cadastrar Produto
+                                    case 1:// Cadastrar Produto TODO PRODUTO CADASTRADO É DO FORNECEDOR
 
                                         clear(); // Limpar tela
 
@@ -876,8 +882,17 @@ public class index {
 
 
                 case 2: // Sistema de transação
+                    clear();
+
                     System.out.println("-- Sistema de transação --");
-                    System.out.println("-->");
+                    System.out.println("--> Primeiro, queremos saber quem é você!");
+                    System.out.println("1- Empresa (Comprar do fornecedor - Vender para os clientes) ");
+                    System.out.println("2 - Cliente (Comprar da empresa)");
+
+                    System.out.print("Digite o número da sua opção: ");
+                    int opcao_transacao = sc.nextInt();
+
+
                     break;
 
                 case 3: // Relatório
@@ -930,4 +945,6 @@ public class index {
         segundos *= 1000;//Transformar milisegundos em segundos
         Thread.sleep(segundos);
     }
+
+    
 }
