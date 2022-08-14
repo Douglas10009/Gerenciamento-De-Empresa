@@ -1,6 +1,6 @@
 # Gerenciamento-De-Empresa
 
-Bom dia, esse codigo em java teve o intutio de similar o cotrole e organização de um gerente sobre a sua empresa.
+Esse codigo em java teve o intutio de similar o cotrole e organização de um gerente sobre a sua empresa.
 
 Alguns dos objetivos desse codigo foram:
 - Cadastramento de Fornecedores, Produtos e Clientes
