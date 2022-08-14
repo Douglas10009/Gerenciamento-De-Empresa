@@ -8,6 +8,8 @@ public class Produto {
 	private int quantidade_produto = 0;
 	private double preco_produto = 0;
     static double valor_total = 0;
+	static int quantidade = 0;
+	static int opc_cliente = 0;
 
 
 	public double getPreco_produto() {
@@ -37,7 +39,23 @@ public class Produto {
 		}
 	}
 
+	public static void top10(int quantidade, int opc_cliente2, ArrayList<Produto> list_produto){
+		String nome = list_produto.get(SeachDelete.buscarCodigoProduto(opc_cliente2, list_produto)).getNome(); //Retorna a posição do nome procurado
+
+		System.out.println("-- Os 10 produtos mais vendidos --");
+		for (int i = 0; i < 10; i++) {
+			int j = i +1;
+			System.out.println(j + "- " + nome + ", com " + quantidade + " número de unidades vendidas");
+		}
+
+	}
+
 	public Produto() {
+	}
+
+	public Produto(int quantidade, int opc_cliente){
+		Produto.quantidade = quantidade;
+		Produto.opc_cliente = opc_cliente;
 	}
 
 	public int getCodigo() {

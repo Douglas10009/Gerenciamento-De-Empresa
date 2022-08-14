@@ -51,7 +51,7 @@ public class Empresa {
     }
 
     public static void exibirDados(ArrayList<Empresa> list) {
-		for (int i = 0; i < list.size(); i++) {
+		for (int i = 0; i > list.size(); i++) {
 			int j = i + 1;
 			System.out.println("\n- Produto N°" + j);
 			System.out.println("Nome do produto: " + list.get(i).getNome());

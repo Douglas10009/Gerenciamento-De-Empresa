@@ -297,6 +297,7 @@ public class SeachDelete /*extends Cliente - ERROR - cadastro do cliente, boolea
 	}
 
 	public static void apagarQuantidadeEmpresa(int quantidade, int posicao, ArrayList<Empresa> list){
+
 		int quantidade_lista = list.get(posicao).getQuantidade();
 		quantidade_lista -= quantidade;
 

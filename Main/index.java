@@ -36,13 +36,14 @@ public class index {
             System.out.println("\n \n-- Menu Principal --");
             System.out.println("Escolha uma opção: ");
             System.out.println("1 - Sistema de logistica - Gerenciar fornecedores/cliente/produtos");
-            System.out.println("2 - Sistema de transação - Compra e Venda (BREVE)");
+            System.out.println("2 - Sistema de transação - Compra e Venda");
             System.out.println("3 - Relatório ");
             System.out.println("4 - Sair ");
             System.out.print("Digite o número da sua opção: ");
             opcao = sc.nextInt();
 
             switch (opcao) {
+                
                 case 1: // Logistica
                     int opcao_log_fornecedores = 0; // Navegação do menu principal dos fornecedores
                     int opcao_log_cliente = 0; // Navegação do menu principal dos clientes
@@ -901,6 +902,7 @@ public class index {
 
                         int opc_produto = 0;
                         int opc_cliente = 0;
+                        Produto produto = new Produto();
                         switch (opcao_transacao) {
                             case 1: // Empresa comprando do fornecedor
                                 while (opc_produto > -1) {
@@ -925,6 +927,7 @@ public class index {
                                                                                                            // lista
                                         System.out.print("Digite a quantidade do produto desejado para comprar: ");
                                         int quantidade = sc.nextInt();
+
 
                                         int posicao = SeachDelete.buscarCodigoProduto(opc_produto, list_produto); // Diz
                                                                                                                   // em
@@ -952,6 +955,7 @@ public class index {
                                                                                             // contrutor de quem tá
                                                                                             // comprando (a empresa)
                                             list_empresa.add(empresa); // Adiciona na lista de construtores da empresa
+
                                             SeachDelete.apagarQuantidadeProduto(quantidade, posicao, list_produto); // Chama
                                                                                                                     // o
                                                                                                                     // método
@@ -976,8 +980,9 @@ public class index {
                                     }
                                 }
                                 break;
-
+                            
                             case 2: // Cliente comprando da empresa
+
                                 while (opc_cliente > -1) {
                                     System.out.println("\n-- Sistema de transação --");
                                     System.out.println("--> Cliente");
@@ -1000,6 +1005,8 @@ public class index {
                                                                                                            // lista
                                         System.out.print("Digite a quantidade do produto desejado para comprar: ");
                                         int quantidade = sc.nextInt();
+                                        produto = new Produto(quantidade, opc_cliente);
+
 
                                         int posicao = SeachDelete.buscarCodigoEmpresa(opc_cliente, list_empresa); // Diz
                                                                                                                   // em
@@ -1009,13 +1016,14 @@ public class index {
                                                                                                                   // o
                                                                                                                   // código
                                                                                                                   // procurado
-                                        int quantidade_produtos_empresa = list_empresa.get(posicao)
-                                                .getQuantidade();
+                                        
+                                        
+
+                                        int quantidade_produtos_empresa = list_empresa.get(posicao).getQuantidade();
                                         int resto_produtos_empresa = quantidade_produtos_empresa - quantidade;
                                         if (resto_produtos_empresa >= 0) { // Verifica se há a quantidade digitada
                                                                            // disponivel no array
-                                            String nome = list_empresa
-                                                    .get(SeachDelete.buscarCodigoEmpresa(opc_cliente, list_empresa))
+                                            String nome = list_empresa.get(SeachDelete.buscarCodigoEmpresa(opc_cliente, list_empresa))
                                                     .getNome(); // Diz o nome do produto a partir do código do produto
                                             double preco = list_empresa
                                                     .get(SeachDelete.buscarCodigoEmpresa(opc_cliente, list_empresa))
@@ -1091,6 +1099,7 @@ public class index {
                     System.out.println("\n- Valor total das compras é de: " + Produto.getValor_total());
 
                     System.out.println("\n- Os 10 produtos mais vendidos são: ");
+                    Produto.top10(Produto.quantidade, Produto.opc_cliente, list_produto); 
 
                     break;
 
