@@ -1,9 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.Hashtable;
 
 public class index {
     public static final String ANSI_RESET = "\u001B[0m";
