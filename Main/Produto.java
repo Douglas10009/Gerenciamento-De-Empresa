@@ -45,7 +45,7 @@ public class Produto {
 		String nome = list_produto.get(SeachDelete.buscarCodigoProduto(opc_cliente2, list_produto)).getNome(); //Retorna a posição do nome procurado
 
 		System.out.println("-- Os 10 produtos mais vendidos --");
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < list_produto.size(); i++) {
 			int j = i +1;
 			System.out.println(j + "- " + nome + ", com " + quantidade + " número de unidades vendidas");
 		}

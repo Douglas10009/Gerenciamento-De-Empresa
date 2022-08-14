@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.*;
 
 public class index {
     public static final String ANSI_RESET = "\u001B[0m";
@@ -22,8 +23,8 @@ public class index {
         ArrayList<Cliente> list_cliente = new ArrayList<Cliente>();
         ArrayList<Produto> list_produto = new ArrayList<Produto>();
         ArrayList<Empresa> list_empresa = new ArrayList<Empresa>();
-        ArrayList<String> nome_itens_comprados = new ArrayList<String>();
-        ArrayList<Integer> quantidade_itens_comprados = new ArrayList<Integer>();
+        ArrayList<String> nome_itens_comprados_cliente = new ArrayList<String>();
+        ArrayList<Integer> quantidade_itens_comprados_cliente = new ArrayList<Integer>();
         // Fim
 
         clear(); // Limpar a tela
@@ -941,9 +942,7 @@ public class index {
                                             empresa = new Empresa(nome, quantidade, preco, opc_produto, isEmpresa); // Coloca o nome, quantidade comprada e o preço no contrutor de quem está comprando (a empresa)
                                             list_empresa.add(empresa); // Adiciona na lista de construtores da empresa
 
-                                            //Criar um array com o nome dos itens comprados, e a quantidade dos mesmos
-                                            nome_itens_comprados.add(nome);
-                                            quantidade_itens_comprados.add(quantidade);
+                                            
 
                                             SeachDelete.apagarQuantidadeProduto(quantidade, posicao, list_produto); // Chama o método para apagar o construtor
 
@@ -997,6 +996,13 @@ public class index {
 
                                             empresa = new Empresa(nome, quantidade, preco, opc_cliente, isEmpresa); // Coloca o nome, quantidade comprada e o preço no contrutor de quem tá comprando (a empresa)
                                             list_empresa.add(empresa); // Adiciona na lista de construtores da empresa
+
+
+                                            //Criar um array com o nome dos itens comprados, e a quantidade dos mesmos
+                                            nome_itens_comprados_cliente.add(nome);
+                                            quantidade_itens_comprados_cliente.add(quantidade);
+
+
                                             SeachDelete.apagarQuantidadeEmpresa(quantidade, posicao, list_empresa); // Chama o método para apagar o construtor
 
                                             System.out.println("\n-----> Você comprou: " + empresa.getNome() + ", unidade(s): " + empresa.getQuantidade() + " e gastou: R$" + empresa.getPreco());
@@ -1054,8 +1060,21 @@ public class index {
                     Double valor_tot_empresa_cliente = Produto.getValor_total_empresa() + Produto.getValor_total_cliente();
                     System.out.println("- Valor total das compras do cliente e da empresa é de: " + valor_tot_empresa_cliente);
 
-                    System.out.println("\n- Os 10 produtos mais vendidos são: ");
-                    Produto.top10(Produto.quantidade, Produto.opc_cliente, list_produto);  //aq
+                    System.out.println("\n- A quantidade dos 10 produtos mais vendidos são: ");
+                    //Produto.top10(Produto.quantidade, Produto.opc_cliente, list_produt);  //aq
+
+                    //Sorteia os arrays em ordem decressente
+                    Collections.sort(quantidade_itens_comprados_cliente, Collections.reverseOrder()); 
+                    Collections.sort(nome_itens_comprados_cliente, Collections.reverseOrder()); //String são organizadas lexicográficamentes
+
+                    for (Integer integer : quantidade_itens_comprados_cliente) {
+                        System.out.println(integer);
+                    }
+
+                    System.out.println("\n-e os nomes dos 10 produtos mais vendidos: ");
+                    for (String String: nome_itens_comprados_cliente) {
+                        System.out.println(String);
+                    }
 
                     break;
 
