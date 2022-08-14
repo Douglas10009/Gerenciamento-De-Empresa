@@ -7,7 +7,9 @@ public class Produto {
 	private static boolean cadastro = false;
 	private int quantidade_produto = 0;
 	private double preco_produto = 0;
-    static double valor_total = 0;
+    static double valor_total_empresa = 0;
+    static double valor_total_cliente = 0;
+
 	static int quantidade = 0;
 	static int opc_cliente = 0;
 
@@ -90,12 +92,22 @@ public class Produto {
 		Produto.cadastro = cad_Produto;
 	}
 
-	public static double getValor_total() {
-        return valor_total;
+	public static double getValor_total_empresa() {
+        return valor_total_empresa;
     }
 
-    public static void setValor_total(double valor_total) {
-        Produto.valor_total = valor_total;
+    public static void setValor_total_empresa(double valor_total) {
+        Produto.valor_total_empresa = valor_total;
     }
+
+	public static double getValor_total_cliente() {
+		return valor_total_cliente;
+	}
+
+	public static void setValor_total_cliente(double valor_total_cliente) {
+		Produto.valor_total_cliente = valor_total_cliente;
+	}
+
+	
 
 }
