@@ -519,7 +519,7 @@ public class index {
 
                                             switch (opc_atualizar) {
                                                 case 1: // Atualizar nome
-                                                    System.out.println("\nDigite o nome para atualizar");
+                                                    System.out.println("\nDigite uma das opções abaixo para atualizar o nome: ");
                                                     for (int i = 0; i < list_cliente.size(); i++) {
                                                         System.out.println(list_cliente.get(i).getNome());// Aqui vai
                                                                                                           // mostrar os
