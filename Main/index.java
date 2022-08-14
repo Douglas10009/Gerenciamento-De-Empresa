@@ -938,7 +938,7 @@ public class index {
                                             String nome = list_produto.get(SeachDelete.buscarCodigoProduto(opc_produto, list_produto)).getNome(); // Diz o nome do produto a partir do código do produto
                                             double preco = list_produto.get(SeachDelete.buscarCodigoProduto(opc_produto, list_produto)).getPreco_produto(); // Diz o preço do produto a partir do código do produto
 
-                                            empresa = new Empresa(nome, quantidade, preco, opc_produto); // Coloca o nome, quantidade comprada e o preço no contrutor de quem está comprando (a empresa)
+                                            empresa = new Empresa(nome, quantidade, preco, opc_produto, isEmpresa); // Coloca o nome, quantidade comprada e o preço no contrutor de quem está comprando (a empresa)
                                             list_empresa.add(empresa); // Adiciona na lista de construtores da empresa
 
                                             //Criar um array com o nome dos itens comprados, e a quantidade dos mesmos
@@ -982,7 +982,7 @@ public class index {
                                     if (SeachDelete.buscarCodigoEmpresa(opc_cliente, list_empresa) > -1) { // Busca e verifica se a localização do código digitado tem na lista
                                         System.out.print("Digite a quantidade do produto desejado para comprar: ");
                                         int quantidade = sc.nextInt();
-                                        produto = new Produto(quantidade, opc_cliente);
+                                        // produto = new Produto(quantidade, opc_cliente);
 
 
                                         int posicao = SeachDelete.buscarCodigoEmpresa(opc_cliente, list_empresa); // Diz em qual posição está o código procurado
