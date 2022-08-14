@@ -255,14 +255,55 @@ public class SeachDelete /*extends Cliente - ERROR - cadastro do cliente, boolea
 		}
 	}
 
-	public static void apagarQuantidadeProduto(int quantidade, int posicao, ArrayList<Produto> list_produto){
-		int quantidade_lista = list_produto.get(posicao).getQuantidade_produto();
+	public static void apagarQuantidadeProduto(int quantidade, int posicao, ArrayList<Produto> list){
+		int quantidade_lista = list.get(posicao).getQuantidade_produto();
 		quantidade_lista -= quantidade;
 
-		list_produto.get(posicao).setQuantidade_produto(quantidade_lista);//Seta a quantidade no array
+		list.get(posicao).setQuantidade_produto(quantidade_lista);//Seta a quantidade no array
 
 		if (quantidade_lista < 1) {
-			list_produto.remove(posicao); //Remove o construtor caso não tenha mais unidades de produtos
+			list.remove(posicao); //Remove o construtor caso não tenha mais unidades de produtos
+		}
+	}
+
+
+
+
+	//Empresa
+	public static int buscarCodigoEmpresa(int codigo, ArrayList<Empresa> list) {
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getCodigo() == codigo) {
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	public static void apagarCodigoEmpresa(int cod_produto, ArrayList<Empresa> list,
+			boolean cad_Produto) {
+		int posicao = buscarCodigoEmpresa(cod_produto, list);
+
+		if (posicao != -1) {
+			System.out.println("\n-----> O produto," + list.get(posicao).getNome() + ", com o código " + cod_produto + " foi apagado com sucesso. \n"); // ALERT
+			list.remove(posicao);
+
+			if (list.size() < 1) {
+				cad_Produto = false;
+			}
+
+		} else {
+			System.out.println("\n-----> Código do produto não encontrado\n"); // ALERT
+		}
+	}
+
+	public static void apagarQuantidadeEmpresa(int quantidade, int posicao, ArrayList<Empresa> list){
+		int quantidade_lista = list.get(posicao).getQuantidade();
+		quantidade_lista -= quantidade;
+
+		list.get(posicao).setQuantidade(quantidade_lista);//Seta a quantidade no array
+
+		if (quantidade_lista < 1) {
+			list.remove(posicao); //Remove o construtor caso não tenha mais unidades de produtos
 		}
 	}
 }

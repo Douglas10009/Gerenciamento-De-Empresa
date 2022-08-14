@@ -77,7 +77,7 @@ public class Produto {
     }
 
     public static void setValor_total(double valor_total) {
-        Empresa.valor_total = valor_total;
+        Produto.valor_total = valor_total;
     }
 
 }
