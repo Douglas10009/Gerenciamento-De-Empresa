@@ -1,6 +1,9 @@
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.Hashtable;
 
 public class index {
     public static final String ANSI_RESET = "\u001B[0m";
@@ -21,6 +24,9 @@ public class index {
         ArrayList<Fornecedores> list_forn = new ArrayList<Fornecedores>();
         ArrayList<Cliente> list_cliente = new ArrayList<Cliente>();
         ArrayList<Produto> list_produto = new ArrayList<Produto>();
+
+        // Dictionary<String, Integer> nome_quantidade = new Hashtable<String, Integer>(); //Dicionário que recebe 2 valores, o nome do produto comprado, e a quantidade respectivamente
+
         // Fim
 
         clear(); // Limpar a tela
@@ -910,9 +916,33 @@ public class index {
                                     opc_produto = sc.nextInt();
 
                                     if (SeachDelete.buscarCodigoProduto(opc_produto, list_produto) > -1) {
-                                        
+                                        System.out.print("\nDigite a quantidade do produto desejado para comprar: ");
+                                        int quantidade_produto = sc.nextInt();
+
+                                        if (list_produto.get(SeachDelete.buscarCodigoProduto(opc_produto, list_produto)).getQuantidade_produto() > -1) {
+                                            int posicao = SeachDelete.buscarCodigoProduto(opc_produto, list_produto);
+
+                                            System.out.println(posicao);//debug
+                                            
+                                            String nome = list_produto.get(SeachDelete.buscarCodigoProduto(opc_produto, list_produto)).getNome();
+
+                                            System.out.println(nome); //degub
+
+                                            double preco = list_produto.get(SeachDelete.buscarCodigoProduto(opc_produto, list_produto)).getPreco_produto();
+                                            System.out.println(preco); //debug
+
+
+                                            // nome_quantidade.put(list_produto.get(SeachDelete.buscarCodigoProduto(opc_produto, list_produto)).getNome(), opc_produto);
+                                            Empresa empresa = new Empresa(nome, quantidade_produto, preco);
+                                            
+
+                                            System.out.println("-----> Você comprou " + empresa.nome_produto.get(posicao) + " unidade(s) de " + empresa.quantidade_produto.get(posicao));
+                                            
+                                        } else {
+                                            System.out.println("\n-----> Não há essa quantidade de produtos, digite um número menor do que a quantidade desse produto!\n"); //ALERT
+                                        }
                                     } else {
-                                        System.out.println("\n-----> Produto não encontrado\n");
+                                        System.out.println("\n-----> Produto não encontrado\n"); //ALERT
                                     }
                                 }
 
