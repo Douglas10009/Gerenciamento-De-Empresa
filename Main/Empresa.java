@@ -1,22 +1,62 @@
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.Hashtable;
 
 public class Empresa {
-    ArrayList <String> nome_produto; //Nome do produto comprado
-    ArrayList <Integer> quantidade_produto; //Quantidade desse produto comprado
-    Dictionary<String, Integer> nome_quantidade = new Hashtable<String, Integer>(); //Dicionário que recebe 2 valores, o nome do produto comprado, e a quantidade respectivamente
-
+    private String nome  ="";
+    private int quantidade = 0;
+    private double preco = 0;
     static double valor_total = 0;
+
+    
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
+    public static double getValor_total() {
+        return valor_total;
+    }
+
+    public static void setValor_total(double valor_total) {
+        Empresa.valor_total = valor_total;
+    }
 
     public Empresa(){}
 
-    public Empresa(String nome, Integer quantidade, double preco){
-        nome_produto.add(nome); //Adicionar o nome do produto comprado ao array
-        quantidade_produto.add(quantidade);  //Adicionar o quantidade do produto comprado ao array
-        //nome_quantidade. //Coloca o
-
-        valor_total += preco; //Para saber o total das compras
+    public Empresa(String nome, int quantidade, double preco){
+        this.nome = nome;
+        this.quantidade = quantidade;
+        this.preco = preco * quantidade;
+        Produto.valor_total += this.preco;
     }
+
+    public static void exibirDados(ArrayList<Produto> list) {
+		for (int i = 0; i < list.size(); i++) {
+			int j = i + 1;
+			System.out.println("\n- Produto N°" + j);
+			System.out.println("Nome do produto: " + list.get(i).getNome());
+			System.out.println("Preço do produto: " + list.get(i).getPreco_produto());
+			System.out.println("Quantidade do produto: " + list.get(i).getQuantidade_produto());
+			System.out.println("Código do produto: " + list.get(i).getCodigo() + "\n");
+		}
+	}
+
 }

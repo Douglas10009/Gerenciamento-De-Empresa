@@ -24,9 +24,7 @@ public class index {
         ArrayList<Fornecedores> list_forn = new ArrayList<Fornecedores>();
         ArrayList<Cliente> list_cliente = new ArrayList<Cliente>();
         ArrayList<Produto> list_produto = new ArrayList<Produto>();
-
-        // Dictionary<String, Integer> nome_quantidade = new Hashtable<String, Integer>(); //Dicionário que recebe 2 valores, o nome do produto comprado, e a quantidade respectivamente
-
+        ArrayList<Empresa> list_empresa = new ArrayList<Empresa>();
         // Fim
 
         clear(); // Limpar a tela
@@ -891,8 +889,11 @@ public class index {
                     break;
 
                 case 2: // Sistema de transação
+                    Empresa empresa = new Empresa();
+
                     clear();
                     if (list_produto.size() > 0) { // Verifica se há produtos cadastrados para o fornecedor
+
                         System.out.println("-- Sistema de transação --");
                         System.out.println("--> Primeiro, queremos saber quem é você!");
                         System.out.println("1- Empresa (Comprar do fornecedor - Vender para os clientes) ");
@@ -915,28 +916,28 @@ public class index {
                                     System.out.print("\nDigite o código do produto desejado para comprar: ");
                                     opc_produto = sc.nextInt();
 
-                                    if (SeachDelete.buscarCodigoProduto(opc_produto, list_produto) > -1) {
+                                    if (SeachDelete.buscarCodigoProduto(opc_produto, list_produto) > -1) { //Busca e verifica se a localização do código digitado tem na lista
                                         System.out.print("\nDigite a quantidade do produto desejado para comprar: ");
-                                        int quantidade_produto = sc.nextInt();
+                                        int quantidade = sc.nextInt();
 
-                                        if (list_produto.get(SeachDelete.buscarCodigoProduto(opc_produto, list_produto)).getQuantidade_produto() > -1) {
-                                            int posicao = SeachDelete.buscarCodigoProduto(opc_produto, list_produto);
+                                        int posicao = SeachDelete.buscarCodigoProduto(opc_produto, list_produto); //Diz em qual posição está o código procurado
+                                        int quantidade_produtos_empresa = list_produto.get(posicao).getQuantidade_produto();
+                                        int resto_produtos_empresa = quantidade_produtos_empresa - quantidade;
+                                        if (resto_produtos_empresa >= 0) { //Verifica se há a quantidade digitada disponivel no array
+                                            String nome = list_produto.get(SeachDelete.buscarCodigoProduto(opc_produto, list_produto)).getNome(); //Diz o nome do produto a partir do código do produto
+                                            double preco = list_produto.get(SeachDelete.buscarCodigoProduto(opc_produto, list_produto)).getPreco_produto(); //Diz o preço do produto a partir do código do produto
 
-                                            System.out.println(posicao);//debug
+                                            empresa = new Empresa(nome, quantidade, preco); //Coloca o nome, quantidade comprada e o preço no contrutor de quem tá comprando (a empresa)
+                                            list_empresa.add(empresa); //Adiciona na lista de construtores da empresa
+                                            SeachDelete.apagarQuantidadeProduto(quantidade, posicao, list_produto); //Chama o método para apagar o construtor
+
+                                            System.out.println("\n-----> Você comprou: " + empresa.getNome() + ", unidade(s): " + empresa.getQuantidade() + " e gastou: R$" + empresa.getPreco());
                                             
-                                            String nome = list_produto.get(SeachDelete.buscarCodigoProduto(opc_produto, list_produto)).getNome();
-
-                                            System.out.println(nome); //degub
-
-                                            double preco = list_produto.get(SeachDelete.buscarCodigoProduto(opc_produto, list_produto)).getPreco_produto();
-                                            System.out.println(preco); //debug
-
-
-                                            // nome_quantidade.put(list_produto.get(SeachDelete.buscarCodigoProduto(opc_produto, list_produto)).getNome(), opc_produto);
-                                            Empresa empresa = new Empresa(nome, quantidade_produto, preco);
+                                            // String a = "-----> Ainda restam, " + list_produto.get(posicao).getQuantidade_produto() + " unidades do produto: " + nome;
+                                            // String b = "-----> Não restam unidades desse produto.";
+                                            // System.out.println(list_produto.get(posicao).getQuantidade_produto() > 0 ? a : b); //Operador ternário, sintaxe: condição? valor(comando se a condição é verdadeiro) : valor(comando se a condição é falsa)
                                             
-
-                                            System.out.println("-----> Você comprou " + empresa.nome_produto.get(posicao) + " unidade(s) de " + empresa.quantidade_produto.get(posicao));
+                                            System.out.println("-----> Você gastou R$" + Produto.getValor_total() + " no total\n");
                                             
                                         } else {
                                             System.out.println("\n-----> Não há essa quantidade de produtos, digite um número menor do que a quantidade desse produto!\n"); //ALERT
@@ -948,7 +949,17 @@ public class index {
 
                                 break;
                             case 2:
+                            while (opc_produto > -1) {
+                                System.out.println("\n-- Sistema de transação --");
+                                System.out.println("--> Cliente");
 
+                                Empresa.exibirDados(list_produto);
+
+                                System.out.println(ANSI_BOLD + "-----> Digite um número negativo para finalizar a compra" + ANSI_RESET);
+                                
+                                System.out.print("\nDigite o código do produto desejado para comprar: ");
+                                opc_produto = sc.nextInt();
+                            }
                                 break;
 
                             default:
@@ -960,7 +971,7 @@ public class index {
                         System.out.println(ANSI_RED
                                 + "\n-----> Não há produtos cadastrados, por favor, tente mais tarde;" + ANSI_RESET); // ALERT
                         System.out.println(ANSI_ITALIC
-                                + "-----> Caso seja um fornecedor, por favor, cadastre seus produtos" + ANSI_RESET
+                                + "-----> Caso seja um fornecedor, considere cadastrar seus produtos" + ANSI_RESET
                                 + "\n"); // ALERT
                     }
 
@@ -985,7 +996,7 @@ public class index {
                     Cliente.exibirDados(list_cliente); // Mostra os dados dos fornecedores
                     sleep(2); // Espera 3 segundos antes de continuar
 
-                    System.out.println("\n- Valor total das compras");
+                    System.out.println("\n- Valor total das compras é de: " + Produto.getValor_total());
 
                     System.out.println("\n- Os 10 produtos mais vendidos são: ");
 

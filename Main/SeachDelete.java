@@ -253,7 +253,16 @@ public class SeachDelete /*extends Cliente - ERROR - cadastro do cliente, boolea
 		} else {
 			System.out.println("\n-----> Código do produto não encontrado\n"); // ALERT
 		}
-        
+	}
 
+	public static void apagarQuantidadeProduto(int quantidade, int posicao, ArrayList<Produto> list_produto){
+		int quantidade_lista = list_produto.get(posicao).getQuantidade_produto();
+		quantidade_lista -= quantidade;
+
+		list_produto.get(posicao).setQuantidade_produto(quantidade_lista);//Seta a quantidade no array
+
+		if (quantidade_lista < 1) {
+			list_produto.remove(posicao); //Remove o construtor caso não tenha mais unidades de produtos
+		}
 	}
 }

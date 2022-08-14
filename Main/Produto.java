@@ -7,6 +7,8 @@ public class Produto {
 	private static boolean cadastro = false;
 	private int quantidade_produto = 0;
 	private double preco_produto = 0;
+    static double valor_total = 0;
+
 
 	public double getPreco_produto() {
 		return preco_produto;
@@ -26,7 +28,9 @@ public class Produto {
 
 	public static void exibirDados(ArrayList<Produto> list) {
 		for (int i = 0; i < list.size(); i++) {
-			System.out.println("\nNome do produto: " + list.get(i).getNome());
+			int j = i + 1;
+			System.out.println("\n- Produto N°" + j);
+			System.out.println("Nome do produto: " + list.get(i).getNome());
 			System.out.println("Preço do produto: " + list.get(i).getPreco_produto());
 			System.out.println("Quantidade do produto: " + list.get(i).getQuantidade_produto());
 			System.out.println("Código do produto: " + list.get(i).getCodigo() + "\n");
@@ -67,5 +71,13 @@ public class Produto {
 	public void setCad_Produto(boolean cad_Produto) {
 		Produto.cadastro = cad_Produto;
 	}
+
+	public static double getValor_total() {
+        return valor_total;
+    }
+
+    public static void setValor_total(double valor_total) {
+        Empresa.valor_total = valor_total;
+    }
 
 }
